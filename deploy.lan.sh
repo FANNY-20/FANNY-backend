@@ -45,7 +45,7 @@ php artisan db:seed
 php artisan config:cache
 php artisan route:cache
 
-php artisan horizon:publish
+# php artisan horizon:publish
 php artisan storage:link
 
 service supervisor start
