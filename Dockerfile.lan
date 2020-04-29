@@ -64,3 +64,6 @@ RUN rm -rf /var/www/html && ln -s /var/www/public /var/www/html
 # Change owner of application directory
 RUN chown -R www-data:www-data /var/www/bootstrap/cache
 RUN chown -R www-data:www-data /var/www/storage
+
+EXPOSE 80
+EXPOSE 6001
