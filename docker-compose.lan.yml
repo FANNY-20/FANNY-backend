@@ -12,20 +12,12 @@ services:
       - redis-server
     labels:
       traefik.enable: "true"
-      traefik.backend: "stop-covid-api"
-      traefik.ws.port: 80
-      traefik.frontend.rule: "Host:api.stop-covid.dev.soyhuce.lan"
-
-  peerjs:
-    network_mode: bridge
-    image: peerjs/peerjs-server
-    ports:
-      - "6001:9000"
-    labels:
-      traefik.enable: "true"
-      traefik.backend: "stop-covid-rtc"
-      traefik.ws.port: 6001
-      traefik.frontend.rule: "Host:peer.stop-covid.dev.soyhuce.lan"
+      traefik.api.backend: "stop-covid-api"
+      traefik.api.ws.port: 80
+      traefik.api.frontend.rule: "Host:api.stop-covid.dev.soyhuce.lan"
+      traefik.peer.backend: "stop-covid-peer
+      traefik.peer.port: 6001
+      traefik.peer.frontend.rule: "Host:peer.stop-covid.dev.soyhuce.lan"
 
   database:
     network_mode: bridge
