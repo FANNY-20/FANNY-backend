@@ -14,7 +14,7 @@ services:
       traefik.enable: "true"
       traefik.backend: "stop-covid-api"
       traefik.ws.port: 80
-      traefik.frontend.rule: "api.stop-covid.dev.soyhuce.lan"
+      traefik.frontend.rule: "Host:api.stop-covid.dev.soyhuce.lan"
 
   peerjs:
     network_mode: bridge
@@ -23,7 +23,7 @@ services:
       traefik.enable: "true"
       traefik.backend: "stop-covid-rtc"
       traefik.ws.port: 9000
-      traefik.frontend.rule: "peer.stop-covid.dev.soyhuce.lan"
+      traefik.frontend.rule: "Host:peer.stop-covid.dev.soyhuce.lan"
 
   database:
     network_mode: bridge
