@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backend:
+    image: stopcovid/stopcovid:test
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - "$WORKSPACE/phpunit:/var/www/phpunit"
+      - "$WORKSPACE/storage/logs:/var/www/storage/logs"
+    links:
+      - database
+
+  database:
+    image: harbor.soyhuce.lan/internal/database:latest

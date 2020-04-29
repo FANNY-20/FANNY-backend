@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  sonar-scanner:
+    image: harbor.soyhuce.lan/internal/sonar-scanner:latest
+    environment:
+      APP_DIR: "/var/www"
+    volumes:
+      - "$WORKSPACE:/var/www"

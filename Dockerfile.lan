@@ -1,0 +1,66 @@
+FROM php:7.4-apache
+LABEL MAINTAINER="Bastien Philippe <bastien.philippe@soyhuce.fr>"
+
+RUN mkdir -p /usr/share/man/man1 \
+    && mkdir -p /usr/share/man/man7
+
+# Install packages for php extensions
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    libcurl4-gnutls-dev \
+    libxml2-dev \
+    libonig-dev \
+    zlib1g-dev \
+    libzip-dev \
+    curl \
+    supervisor \
+    postgresql-client \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libgd3 \
+    redis-tools
+
+# Install & configure php extension from sources
+RUN docker-php-ext-configure opcache --enable-opcache \
+    && docker-php-ext-install -j$(nproc) \
+                                  json \
+                                  dom \
+                                  curl \
+                                  bcmath \
+                                  mbstring \
+                                  pcntl \
+                                  pgsql \
+                                  pdo_pgsql \
+                                  zip \
+                                  gd \
+                                  opcache
+
+# Add en_US.UTF-8 locale
+RUN apt-get install -y locales && \
+  sed -i -e "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen && \
+  echo "LANG=en_US.UTF-8">/etc/default/locale && \
+  dpkg-reconfigure --frontend=noninteractive locales
+
+ENV LC_COLLATE en_US.UTF-8
+
+RUN pecl install redis && docker-php-ext-enable redis
+
+# Customize PHP conf using a custom php.ini
+COPY php-app.ini /usr/local/etc/php/conf.d/php-app.ini
+
+# Enable mod_rewrite in apache2
+RUN a2enmod rewrite && service apache2 restart
+
+# Configure supervisor laravel worker
+ADD supervisord.lan.conf /etc/supervisor/conf.d/laravel-horizon.conf
+
+# Copy application sources into default apache2 directory
+WORKDIR /var/www
+COPY . /var/www
+
+# Link laravel public folder to default apache2 public folder
+RUN rm -rf /var/www/html && ln -s /var/www/public /var/www/html
+
+# Change owner of application directory
+RUN chown -R www-data:www-data /var/www/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/storage
