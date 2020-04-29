@@ -15,7 +15,18 @@ services:
       traefik.api.backend: "stop-covid-api"
       traefik.api.ws.port: 80
       traefik.api.frontend.rule: "Host:api.stop-covid.dev.soyhuce.lan"
-      traefik.peer.backend: "stop-covid-peer"
+
+  peerjs:
+    network_mode: bridge
+    image: harbor.soyhuce.lan/stopcovid/peerjs:lan
+    environment:
+      PEERJS_PORT: 6001
+      PEERJS_PATH: "/"
+    ports:
+      - "6001:6001"
+    labels:
+      traefik.enable: "true"
+      traefik.peer.backend: "stop-covid-rtc"
       traefik.peer.port: 6001
       traefik.peer.frontend.rule: "Host:peer.stop-covid.dev.soyhuce.lan"
 
