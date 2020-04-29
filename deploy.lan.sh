@@ -11,6 +11,7 @@ APP_DEBUG=true
 APP_URL=http://api.stop-covid.dev.soyhuce.lan
 
 LOG_CHANNEL=development
+ROLLBAR_SERVER_TOKEN=$ROLLBAR_SERVER_TOKEN
 
 DB_CONNECTION=pgsql
 DB_HOST=database
@@ -45,7 +46,7 @@ php artisan db:seed
 php artisan config:cache
 php artisan route:cache
 
-# php artisan horizon:publish
+php artisan horizon:publish
 php artisan storage:link
 
 service supervisor start
