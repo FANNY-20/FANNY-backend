@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Support\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
@@ -9,9 +9,8 @@ class EncryptCookies extends Middleware
     /**
      * The names of the cookies that should not be encrypted.
      *
-     * @var array
+     * @var array<string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
-    protected $except = [
-        //
-    ];
+    protected $except = [];
 }
