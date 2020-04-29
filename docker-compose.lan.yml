@@ -19,10 +19,12 @@ services:
   peerjs:
     network_mode: bridge
     image: peerjs/peerjs-server
+    ports:
+      - "6001:9000"
     labels:
       traefik.enable: "true"
       traefik.backend: "stop-covid-rtc"
-      traefik.ws.port: 9000
+      traefik.ws.port: 6001
       traefik.frontend.rule: "Host:peer.stop-covid.dev.soyhuce.lan"
 
   database:
