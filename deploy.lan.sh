@@ -26,6 +26,8 @@ QUEUE_CONNECTION=redis
 SESSION_DRIVER=redis
 
 MAIL_MAILER=log
+
+APP_TOKEN=u5ag50qVviYq4L20nUdTagBhVajrlVpVc3wqZ37wcKQnQdSqAFZbcfNgecQ9KeyJ
 EOF
 
 php artisan key:generate
