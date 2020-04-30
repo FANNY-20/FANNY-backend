@@ -9,6 +9,7 @@ class RegistrationServiceProvider extends ServiceProvider
     /** @var array<string> */
     public array $local = [
         \Barryvdh\Debugbar\ServiceProvider::class,
+        \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class,
         \Soyhuce\CsFixer\ServiceProvider::class,
         \Soyhuce\DevTools\ServiceProvider::class,

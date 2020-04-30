@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ba9654c2c9ab9ac2ac24414bfe3e8de",
+    "content-hash": "8b0b6d3df7243eb1959c079a29f941e1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1044,6 +1044,61 @@
                 "psysh"
             ],
             "time": "2020-04-07T15:01:31+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0",
+                "illuminate/filesystem": "^7.0",
+                "illuminate/support": "^7.0",
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "time": "2020-04-29T15:06:45+00:00"
         },
         {
             "name": "league/commonmark",
@@ -4136,6 +4191,55 @@
                 }
             ],
             "time": "2020-04-16T20:19:40+00:00"
+        },
+        {
+            "name": "barryvdh/reflection-docblock",
+            "version": "v2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/ReflectionDocBlock.git",
+                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/ReflectionDocBlock/zipball/6b69015d83d3daf9004a71a89f26e27d27ef6a16",
+                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0,<4.5"
+            },
+            "suggest": {
+                "dflydev/markdown": "~1.0",
+                "erusev/parsedown": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Barryvdh": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "mike.vanriel@naenius.com"
+                }
+            ],
+            "time": "2018-12-13T10:34:14+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -8065,6 +8169,108 @@
                 "soyhuce"
             ],
             "time": "2020-02-26T14:07:20+01:00"
+        },
+        {
+            "name": "soyhuce/laravel-ide-helper",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.soyhuce.lan:backend-package/laravel-ide-helper.git",
+                "reference": "807c0e04c456d484b607db79705ce4885d09eddc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://storkist.soyhuce.lan/storage/dist/soyhuce/laravel-ide-helper/soyhuce-laravel-ide-helper-807c0e04c456d484b607db79705ce4885d09eddc-zip-c04249.zip",
+                "reference": "807c0e04c456d484b607db79705ce4885d09eddc",
+                "shasum": "3df89f92fe9581b930f763a2e6e287682a20778d"
+            },
+            "require": {
+                "barryvdh/reflection-docblock": "^2.0.6",
+                "composer/composer": "^1.6",
+                "doctrine/dbal": "~2.3",
+                "illuminate/console": "^5.5|^6|^7.0",
+                "illuminate/filesystem": "^5.5|^6|^7.0",
+                "illuminate/support": "^5.5|^6|^7.0",
+                "php": ">=7"
+            },
+            "require-dev": {
+                "hyn/multi-tenant": "^5.5",
+                "illuminate/config": "^5.5|^6|^7.0",
+                "illuminate/view": "^5.5|^6|^7.0",
+                "phpro/grumphp": "^0.14",
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1",
+                "soyhuce/virtual-attributes": "^0.4.0",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "suggest": {
+                "hyn/multi-tenant": "Run multiple websites using the same Laravel installation",
+                "soyhuce/virtual-attributes": "Add virtual attributes computed directly from database"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\LaravelIdeHelper\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Barryvdh\\LaravelIdeHelper\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "check-style": [
+                    "phpcs -p --standard=PSR2 src/"
+                ],
+                "fix-style": [
+                    "phpcbf -p --standard=PSR2 src/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                },
+                {
+                    "name": "Bastien Philippe",
+                    "email": "bastien.philippe@soyhuce.fr",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Julien Roche",
+                    "email": "julien.roche@soyhuce.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel IDE Helper, generates correct PHPDocs for all Facade classes, to improve auto-completion.",
+            "keywords": [
+                "autocomplete",
+                "codeintel",
+                "helper",
+                "ide",
+                "laravel",
+                "netbeans",
+                "phpdoc",
+                "phpstorm",
+                "sublime"
+            ],
+            "time": "2020-02-26T17:02:26+01:00"
         },
         {
             "name": "soyhuce/next-ide-helper",
