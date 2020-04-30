@@ -67,6 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+            'model' => null,
         ],
 
         // 'users' => [

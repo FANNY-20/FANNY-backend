@@ -78,12 +78,10 @@
             "@php artisan key:generate --ansi"
         ],
         "migrate": [
-            "@php artisan migrate",
-            "@php artisan tenancy:migrate"
+            "@php artisan migrate"
         ],
         "migrate:fresh": [
-            "@php artisan migrate:fresh",
-            "@php artisan tenancy:migrate:fresh"
+            "@php artisan migrate:fresh"
         ],
         "migrate:refresh": [
             "@php artisan migrate:refresh"
