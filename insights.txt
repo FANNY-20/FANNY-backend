@@ -1,24 +1,24 @@
 [SUMMARY]
 
 Code .......................................................... 94.8 %
-Complexity .................................................... 92.3 %
+Complexity .................................................... 93.8 %
 Architecture ................................................. 100.0 %
 Style ......................................................... 98.7 %
 
-[CODE] 94.8 pts within 206 lines
+[CODE] 94.8 pts within 250 lines
 
-Comments ...................................................... 57.3 %
-Classes ....................................................... 16.0 %
-Functions ...................................................... 1.5 %
-Globally ...................................................... 25.2 %
+Comments ...................................................... 56.4 %
+Classes ....................................................... 17.6 %
+Functions ...................................................... 1.2 %
+Globally ...................................................... 24.8 %
 
-[COMPLEXITY] 92.3 pts with average of 1.23 cyclomatic complexity
+[COMPLEXITY] 93.8 pts with average of 1.19 cyclomatic complexity
 
-[ARCHITECTURE] 100 pts within 21 files
+[ARCHITECTURE] 100 pts within 24 files
 
-Classes ....................................................... 85.7 %
+Classes ....................................................... 87.5 %
 Interfaces ..................................................... 0.0 %
-Globally ...................................................... 14.3 %
+Globally ...................................................... 12.5 %
 Traits ......................................................... 0.0 %
 
 [MISC] 98.7 pts on coding style and 0 security issues encountered
@@ -33,6 +33,9 @@ Traits ......................................................... 0.0 %
   app/Support/Http/Middleware/RedirectIfAuthenticated.php:18: Method \Support\Http\Middleware\RedirectIfAuthenticated::handle() does not have native type hint for its parameter $request but it should be possible to add it based on @param annotation "\Illuminate\Http\Request".
 
 • [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
+  app/Domain/Geolocation/Models/Geolocation.php:17: Property \Domain\Geolocation\Models\Geolocation::$incrementing does not have native type hint for its value but it should be possible to add it based on @var annotation "bool".
+  app/Domain/Geolocation/Models/Geolocation.php:20: Property \Domain\Geolocation\Models\Geolocation::$primaryKey does not have native type hint for its value but it should be possible to add it based on @var annotation "string".
+  app/Domain/Geolocation/Models/Geolocation.php:23: Property \Domain\Geolocation\Models\Geolocation::$casts does not have native type hint for its value but it should be possible to add it based on @var annotation "array<string, string>".
   app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
   app/Support/HttpKernel.php:16: Property \Support\HttpKernel::$middleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
   app/Support/HttpKernel.php:28: @var annotation of property \Support\HttpKernel::$middlewareGroups does not specify type hint for its items.
