@@ -15,6 +15,7 @@
         "laravel/framework": "^7.0",
         "laravel/horizon": "^4.3",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^2.0",
         "rollbar/rollbar-laravel": "^6.0",
         "soyhuce/service-provider-registrar": "^0.2.0"
     },
@@ -29,6 +30,7 @@
         "phpunit/phpunit": "^9.0",
         "soyhuce/cs-fixer": "^0.5.1",
         "soyhuce/dev-tools": "^2.3",
+        "soyhuce/laravel-ide-helper": "^2.7",
         "soyhuce/next-ide-helper": "dev-develop",
         "soyhuce/phpinsights-text-formatter": "^0.2"
     },
@@ -41,7 +43,8 @@
         "laravel": {
             "dont-discover": [
                 "barryvdh/laravel-debugbar",
-                "nunomaduro/phpinsights"
+                "nunomaduro/phpinsights",
+                "soyhuce/laravel-ide-helper"
             ]
         }
     },
