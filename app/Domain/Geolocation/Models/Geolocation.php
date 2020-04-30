@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $uuid
- * @property \Domain\Geolocation\Models\Location $location
+ * @property \Domain\Geolocation\Models\Point $location
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
  */

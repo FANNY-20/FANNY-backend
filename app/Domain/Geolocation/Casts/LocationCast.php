@@ -3,8 +3,7 @@
 namespace Domain\Geolocation\Casts;
 
 use DB;
-use Domain\Geolocation\Models\Geolocation;
-use Domain\Geolocation\Models\Location;
+use Domain\Geolocation\Models\Point;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Query\Expression;
 
@@ -17,16 +16,16 @@ class LocationCast implements CastsAttributes
      * @param string $value
      * @param array<string, mixed> $attributes
      */
-    public function get($model, string $key, $value, array $attributes): Location
+    public function get($model, string $key, $value, array $attributes): Point
     {
-        $location = Geolocation::query()
-            ->select(DB::raw(
-                "ST_AsText(ST_GeomFromEWKT('{$value}')) as point"
-            ))->first();
+        $point = $model->newQuery()
+            ->getQuery()
+            ->first(DB::raw("ST_AsText(ST_GeomFromEWKT('{$value}')) as point"))
+            ->point;
 
-        preg_match('#^\S+\((?<lat>\d+(?:\.\d+)?) (?<lon>\d+(?:\.\d+)?)\)#', $location['point'], $coords);
+        preg_match('#^\S+\((?<lat>\d+(?:\.\d+)?) (?<lon>\d+(?:\.\d+)?)\)#', $point, $coords);
 
-        return new Location($coords['lat'], $coords['lon']);
+        return new Point($coords['lat'], $coords['lon']);
     }
 
     /**

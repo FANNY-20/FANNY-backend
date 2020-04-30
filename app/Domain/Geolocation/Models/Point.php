@@ -2,7 +2,7 @@
 
 namespace Domain\Geolocation\Models;
 
-class Location
+class Point
 {
     public float $latitude;
 
