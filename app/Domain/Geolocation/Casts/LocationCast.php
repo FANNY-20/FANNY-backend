@@ -6,6 +6,7 @@ use DB;
 use Domain\Geolocation\Models\Point;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Str;
 
 class LocationCast implements CastsAttributes
 {
@@ -23,9 +24,12 @@ class LocationCast implements CastsAttributes
             ->first(DB::raw("ST_AsText(ST_GeomFromEWKT('{$value}')) as point"))
             ->point;
 
-        preg_match('#^\S+\((?<lat>\d+(?:\.\d+)?) (?<lon>\d+(?:\.\d+)?)\)#', $point, $coords);
+        [$lat, $lon] = Str::of($point)
+            ->substr(5)
+            ->trim('()')
+            ->explode(' ');
 
-        return new Point($coords['lat'], $coords['lon']);
+        return new Point($lat, $lon);
     }
 
     /**
