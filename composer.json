@@ -1,26 +1,36 @@
 {
-    "name": "laravel/laravel",
+    "name": "stop-covid/stop-covid",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Stop-Covid API",
     "keywords": [
-        "framework",
-        "laravel"
+        "covid",
+        "api"
     ],
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/horizon": "^4.3",
+        "laravel/tinker": "^2.0",
+        "rollbar/rollbar-laravel": "^6.0",
+        "soyhuce/service-provider-registrar": "^0.2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.3",
         "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5"
+        "nunomaduro/larastan": "^0.5.2",
+        "nunomaduro/phpinsights": "^1.14",
+        "phpunit/phpunit": "^9.0",
+        "soyhuce/cs-fixer": "^0.5.1",
+        "soyhuce/dev-tools": "^2.3",
+        "soyhuce/next-ide-helper": "dev-develop",
+        "soyhuce/phpinsights-text-formatter": "^0.2"
     },
     "config": {
         "optimize-autoloader": true,
@@ -29,7 +39,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "barryvdh/laravel-debugbar",
+                "nunomaduro/phpinsights"
+            ]
         }
     },
     "autoload": {
@@ -60,6 +73,50 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "migrate": [
+            "@php artisan migrate",
+            "@php artisan tenancy:migrate"
+        ],
+        "migrate:fresh": [
+            "@php artisan migrate:fresh",
+            "@php artisan tenancy:migrate:fresh"
+        ],
+        "migrate:refresh": [
+            "@php artisan migrate:refresh"
+        ],
+        "db:seed": [
+            "@php artisan db:seed"
+        ],
+        "mf": [
+            "composer migrate:fresh"
+        ],
+        "mfs": [
+            "composer migrate:fresh",
+            "composer db:seed"
+        ],
+        "cs": [
+            "@php artisan cs:fix"
+        ],
+        "test": [
+            "./vendor/bin/phpunit --config=phpunit.xml"
+        ],
+        "insights": [
+            "@php artisan insights --format=\\\\Soyhuce\\\\PhpInsights\\\\TextFormatter > insights.txt"
+        ],
+        "analyse": [
+            "./vendor/bin/phpstan analyse"
+        ],
+        "all": [
+            "@cs",
+            "@test",
+            "@insights"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://storkist.soyhuce.lan/"
+        }
+    ]
 }

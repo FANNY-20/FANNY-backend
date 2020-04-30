@@ -1,0 +1,56 @@
+[SUMMARY]
+
+Code .......................................................... 94.8 %
+Complexity .................................................... 93.9 %
+Architecture ................................................. 100.0 %
+Style ......................................................... 98.7 %
+
+[CODE] 94.8 pts within 194 lines
+
+Comments ...................................................... 60.8 %
+Classes ....................................................... 15.5 %
+Functions ...................................................... 1.0 %
+Globally ...................................................... 22.7 %
+
+[COMPLEXITY] 93.9 pts with average of 1.18 cyclomatic complexity
+
+[ARCHITECTURE] 100 pts within 19 files
+
+Classes ....................................................... 84.2 %
+Interfaces ..................................................... 0.0 %
+Globally ...................................................... 15.8 %
+Traits ......................................................... 0.0 %
+
+[MISC] 98.7 pts on coding style and 0 security issues encountered
+
+• [Code] Useless overriding method: (PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff)
+  app/App/Providers/HorizonServiceProvider.php:16: Possible useless method overriding detected
+  app/App/Providers/RouteServiceProvider.php:10: Possible useless method overriding detected
+
+• [Code] Parameter type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff)
+  app/Support/Http/Middleware/RedirectIfAuthenticated.php:14: Method \Support\Http\Middleware\RedirectIfAuthenticated::handle() has useless @param annotation for parameter $next.
+  app/Support/Http/Middleware/RedirectIfAuthenticated.php:18: Method \Support\Http\Middleware\RedirectIfAuthenticated::handle() does not have native type hint for its parameter $guard but it should be possible to add it based on @param annotation "string|null".
+  app/Support/Http/Middleware/RedirectIfAuthenticated.php:18: Method \Support\Http\Middleware\RedirectIfAuthenticated::handle() does not have native type hint for its parameter $request but it should be possible to add it based on @param annotation "\Illuminate\Http\Request".
+
+• [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
+  app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
+  app/Support/HttpKernel.php:16: Property \Support\HttpKernel::$middleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
+  app/Support/HttpKernel.php:28: @var annotation of property \Support\HttpKernel::$middlewareGroups does not specify type hint for its items.
+  app/Support/HttpKernel.php:30: Property \Support\HttpKernel::$middlewareGroups does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
+  app/Support/HttpKernel.php:52: @var annotation of property \Support\HttpKernel::$routeMiddleware does not specify type hint for its items.
+  app/Support/HttpKernel.php:54: Property \Support\HttpKernel::$routeMiddleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
+
+• [Code] Return type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff)
+  app/App/Providers/HorizonServiceProvider.php:16: Method \App\Providers\HorizonServiceProvider::boot() does not have native return type hint for its return value but it should be possible to add it based on @return annotation "void".
+  app/App/Providers/HorizonServiceProvider.php:34: Method \App\Providers\HorizonServiceProvider::gate() does not have native return type hint for its return value but it should be possible to add it based on @return annotation "void".
+  app/App/Providers/RouteServiceProvider.php:10: Method \App\Providers\RouteServiceProvider::boot() does not have void return type hint.
+  app/Support/Http/Middleware/Authenticate.php:13: Method \Support\Http\Middleware\Authenticate::redirectTo() does not have return type hint nor @return annotation for its return value.
+  routes/console.php:17: Closure does not have void return type hint.
+
+• [Code] Unused parameter: (SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff)
+  app/Support/Http/Middleware/RedirectIfAuthenticated.php:18: Unused parameter $guard.
+
+• [Style] Unused uses: (SlevomatCodingStandard\Sniffs\Namespaces\UnusedUsesSniff)
+  app/App/Providers/HorizonServiceProvider.php:6: Type Laravel\Horizon\Horizon is not used in this file.
+  app/Support/Http/Middleware/RedirectIfAuthenticated.php:6: Type Illuminate\Support\Facades\Auth is not used in this file.
+

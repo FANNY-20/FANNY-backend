@@ -22,14 +22,13 @@ ansiColor('xterm') {
     def rocketChannel = 'projet-stop-covid'
     def rocketAvatar = 'https://jenkins-old.soyhuce.lan/static/548e7230/images/headshot.png'
 
-    /*def secrets = [
-        [$class: 'VaultSecret', path: "secret/rise/monegapro/rollbar",
+    def secrets = [
+        [$class: 'VaultSecret', path: "secret/stopcovid/rollbar",
             secretValues: [
-                [$class: 'VaultSecretValue', envVar: 'rollbarClientToken', vaultKey: 'client_token'],
                 [$class: 'VaultSecretValue', envVar: 'rollbarServerToken', vaultKey: 'server_token']
             ]
         ],
-    ]*/
+    ]
 
     def vaultConfiguration = [
       $class: 'VaultConfiguration',
@@ -170,15 +169,15 @@ ansiColor('xterm') {
                         sh "docker-compose -f docker-compose.lan.yml -p ${previousDeployed} down || echo 0"
 
                         // deploy docker
-                        /*wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration, vaultSecrets: secrets]) {
+                        wrap([$class: 'VaultBuildWrapper', configuration: vaultConfiguration, vaultSecrets: secrets]) {
                             withEnv([
                               "ROLLBAR_SERVER_TOKEN=${rollbarServerToken}",
-                            ]) {*/
+                            ]) {
                                 sh "docker-compose -f docker-compose.lan.yml -p ${devProject} build"
                                 sh "docker-compose -f docker-compose.lan.yml -p ${devProject} up -d"
                                 sh "docker-compose -f docker-compose.lan.yml -p ${devProject} exec -T backend './deploy.lan.sh'"
-                            /*}
-                        }*/
+                            }
+                        }
 
 								        // update reference on currently deployed server
                         sh "mkdir -p /home/jenkins/workspace/stopcovid/stopcovid"

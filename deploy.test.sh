@@ -17,7 +17,7 @@ DB_PASSWORD=postgres
 EOF
 
 php artisan key:generate
-# php artisan horizon:publish
+php artisan horizon:publish
 
 until psql -h database -U postgres -c '\l'; do
   sleep 1

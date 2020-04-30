@@ -5,7 +5,6 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
@@ -60,9 +59,6 @@ return [
             'handler' => \Rollbar\Laravel\MonologHandler::class,
             'access_token' => env('ROLLBAR_SERVER_TOKEN'),
             'level' => 'error',
-            'person_fn' => \Support\Logging\RollbarUser::class . '::get',
-            'capture_email' => false,
-            'capture_username' => true,
         ],
 
         'daily' => [
@@ -118,5 +114,4 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
     ],
-
 ];
