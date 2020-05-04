@@ -1,18 +1,18 @@
 [SUMMARY]
 
-Code .......................................................... 96.9 %
-Complexity .................................................... 95.8 %
+Code .......................................................... 97.9 %
+Complexity .................................................... 95.7 %
 Architecture ................................................. 100.0 %
 Style ........................................................ 100.0 %
 
-[CODE] 96.9 pts within 292 lines
+[CODE] 97.9 pts within 296 lines
 
-Comments ...................................................... 49.3 %
-Classes ....................................................... 19.5 %
+Comments ...................................................... 48.6 %
+Classes ....................................................... 19.9 %
 Functions ...................................................... 1.4 %
-Globally ...................................................... 29.8 %
+Globally ...................................................... 30.1 %
 
-[COMPLEXITY] 95.8 pts with average of 1.12 cyclomatic complexity
+[COMPLEXITY] 95.7 pts with average of 1.13 cyclomatic complexity
 
 [ARCHITECTURE] 100 pts within 29 files
 
@@ -22,9 +22,6 @@ Globally ...................................................... 10.3 %
 Traits ......................................................... 0.0 %
 
 [MISC] 100 pts on coding style and 0 security issues encountered
-
-• [Code] Useless overriding method: (PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff)
-  app/App/Providers/HorizonServiceProvider.php:9: Possible useless method overriding detected
 
 • [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
   app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
