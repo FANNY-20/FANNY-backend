@@ -14,7 +14,28 @@ class StoreGeolocationTest extends TestCase
      * @test
      * @covers ::store
      */
-    public function geolocationIsStored()
+    public function geolocationIsCreated()
+    {
+        $this->postJson(
+            'api/geolocations',
+            [
+                'uuid' => 'azerty123456',
+                'lat' => 15,
+                'lon' => -15,
+            ],
+            ['Authorization' => 'Bearer some-random-string']
+        )->assertSuccessful();
+
+        $this->assertDatabaseHas('geolocations', [
+            'uuid' => 'azerty123456',
+        ]);
+    }
+
+    /**
+     * @test
+     * @covers ::store
+     */
+    public function geolocationIsUpdated()
     {
         $this->postJson(
             'api/geolocations',

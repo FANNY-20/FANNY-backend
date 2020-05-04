@@ -2,15 +2,16 @@
 
 namespace Domain\Geolocation\Actions;
 
-use Domain\Geolocation\DTO\CreateGeolocationDTO;
+use Domain\Geolocation\DTO\GeolocationDTO;
 use Domain\Geolocation\Models\Geolocation;
 
-class CreateGeolocationAction
+class SaveGeolocationAction
 {
-    public function execute(CreateGeolocationDTO $data): Geolocation
+    public function execute(GeolocationDTO $data): Geolocation
     {
-        return Geolocation::create([
+        return Geolocation::updateOrCreate([
             'uuid' => $data->uuid,
+        ], [
             'location' => $data->location,
         ]);
     }

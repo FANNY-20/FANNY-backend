@@ -10,7 +10,7 @@ use Soyhuce\Rules\DbRules;
  * @property-read float $lat
  * @property-read float $lon
  */
-class CreateGeolocationRequest extends FormRequest
+class CreateOrUpdateGeolocationRequest extends FormRequest
 {
     /**
      * @return array<string, string>
