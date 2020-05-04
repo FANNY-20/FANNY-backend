@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        parent::boot();
-    }
-
     public function map(): void
     {
         $this->mapApiRoutes();

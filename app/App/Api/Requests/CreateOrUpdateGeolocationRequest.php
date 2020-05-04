@@ -18,7 +18,7 @@ class CreateOrUpdateGeolocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uuid' => rules(['required', DbRules::string(), 'unique:geolocations,uuid']),
+            'uuid' => rules(['required', DbRules::string()]),
             'lat' => 'required|numeric|min:-90|max:90',
             'lon' => 'required|numeric|min:-180|max:180',
         ];
