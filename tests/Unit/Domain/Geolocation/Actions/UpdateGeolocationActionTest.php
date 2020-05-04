@@ -3,7 +3,7 @@
 namespace Tests\Unit\Domain\Geolocation\Actions;
 
 use Domain\Geolocation\Actions\UpdateGeolocationAction;
-use Domain\Geolocation\DTO\SaveGeolocationDTO;
+use Domain\Geolocation\DTO\UpdateGeolocationDTO;
 use Domain\Geolocation\Models\Geolocation;
 use Domain\Geolocation\Models\Point;
 use Tests\TestCase;
@@ -23,7 +23,7 @@ class UpdateGeolocationActionTest extends TestCase
             ['location' => new Point(11, -11)]
         );
 
-        $data = new SaveGeolocationDTO([
+        $data = new UpdateGeolocationDTO([
             'geolocation' => $geolocation,
             'location' => new Point(10, -10),
         ]);

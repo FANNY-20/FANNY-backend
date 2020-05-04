@@ -6,14 +6,15 @@ use App\Api\Requests\CreateGeolocationRequest;
 use App\Api\Requests\UpdateGeolocationRequest;
 use Domain\Geolocation\Actions\CreateGeolocationAction;
 use Domain\Geolocation\Actions\UpdateGeolocationAction;
-use Domain\Geolocation\DTO\SaveGeolocationDTO;
+use Domain\Geolocation\DTO\CreateGeolocationDTO;
+use Domain\Geolocation\DTO\UpdateGeolocationDTO;
 use Illuminate\Http\JsonResponse;
 
 class GeolocationController
 {
     public function store(CreateGeolocationRequest $request, CreateGeolocationAction $storeAction): JsonResponse
     {
-        $data = SaveGeolocationDTO::fromCreateRequest($request);
+        $data = CreateGeolocationDTO::fromRequest($request);
 
         $storeAction->execute($data);
 
@@ -22,7 +23,7 @@ class GeolocationController
 
     public function update(UpdateGeolocationRequest $request, UpdateGeolocationAction $updateAction): JsonResponse
     {
-        $data = SaveGeolocationDTO::fromUpdateRequest($request);
+        $data = UpdateGeolocationDTO::fromRequest($request);
 
         $updateAction->execute($data);
 
