@@ -5,5 +5,4 @@ use Support\Http\Middleware\AuthenticateApp;
 
 Route::group(['middleware' => AuthenticateApp::class], static function (): void {
     Route::post('geolocations', [GeolocationController::class, 'store']);
-    Route::put('geolocations/{geolocation}', [GeolocationController::class, 'update']);
 });
