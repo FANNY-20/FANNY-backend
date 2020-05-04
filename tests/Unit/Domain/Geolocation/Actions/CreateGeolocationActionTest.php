@@ -3,7 +3,7 @@
 namespace Tests\Unit\Domain\Geolocation\Actions;
 
 use Domain\Geolocation\Actions\CreateGeolocationAction;
-use Domain\Geolocation\DTO\CreateGeolocationDTO;
+use Domain\Geolocation\DTO\SaveGeolocationDTO;
 use Domain\Geolocation\Models\Geolocation;
 use Domain\Geolocation\Models\Point;
 use Tests\TestCase;
@@ -19,7 +19,7 @@ class CreateGeolocationActionTest extends TestCase
      */
     public function geolocationIsCreated()
     {
-        $data = new CreateGeolocationDTO([
+        $data = new SaveGeolocationDTO([
             'uuid' => 'azerty123456789',
             'location' => new Point(15.55, -5.66),
         ]);
