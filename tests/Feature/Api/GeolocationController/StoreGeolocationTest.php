@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\GeolocationController;
 
-use Domain\Geolocation\Models\Geolocation;
 use Tests\TestCase;
 
 /**
@@ -89,29 +88,6 @@ class StoreGeolocationTest extends TestCase
                 'uuid' => ['The uuid field is required.'],
                 'lat' => ['The lat field is required.'],
                 'lon' => ['The lon field is required.'],
-            ]);
-    }
-
-    /**
-     * @test
-     * @covers ::store
-     */
-    public function uuidMustBeUnique()
-    {
-        factory(Geolocation::class)->create(['uuid' => 'azerty123456']);
-
-        $this->postJson(
-            'api/geolocations',
-            [
-                'uuid' => 'azerty123456',
-                'lat' => 15,
-                'lon' => -15,
-            ],
-            ['Authorization' => 'Bearer some-random-string']
-        )
-            ->assertStatus(422)
-            ->assertJsonPath('errors', [
-                'uuid' => ['The uuid has already been taken.'],
             ]);
     }
 }
