@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "rollbar/rollbar-laravel": "^6.0",
-        "soyhuce/service-provider-registrar": "^0.2.0"
+        "soyhuce/service-provider-registrar": "^0.2.0",
+        "spatie/data-transfer-object": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

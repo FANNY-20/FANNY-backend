@@ -1,24 +1,24 @@
 [SUMMARY]
 
 Code .......................................................... 94.8 %
-Complexity .................................................... 93.8 %
+Complexity .................................................... 95.0 %
 Architecture ................................................. 100.0 %
 Style ......................................................... 98.7 %
 
-[CODE] 94.8 pts within 250 lines
+[CODE] 94.8 pts within 281 lines
 
-Comments ...................................................... 56.4 %
-Classes ....................................................... 17.6 %
-Functions ...................................................... 1.2 %
-Globally ...................................................... 24.8 %
+Comments ...................................................... 51.2 %
+Classes ....................................................... 18.9 %
+Functions ...................................................... 1.8 %
+Globally ...................................................... 28.1 %
 
-[COMPLEXITY] 93.8 pts with average of 1.19 cyclomatic complexity
+[COMPLEXITY] 95 pts with average of 1.15 cyclomatic complexity
 
-[ARCHITECTURE] 100 pts within 24 files
+[ARCHITECTURE] 100 pts within 28 files
 
-Classes ....................................................... 87.5 %
+Classes ....................................................... 89.3 %
 Interfaces ..................................................... 0.0 %
-Globally ...................................................... 12.5 %
+Globally ...................................................... 10.7 %
 Traits ......................................................... 0.0 %
 
 [MISC] 98.7 pts on coding style and 0 security issues encountered
@@ -48,7 +48,7 @@ Traits ......................................................... 0.0 %
   app/App/Providers/HorizonServiceProvider.php:34: Method \App\Providers\HorizonServiceProvider::gate() does not have native return type hint for its return value but it should be possible to add it based on @return annotation "void".
   app/App/Providers/RouteServiceProvider.php:10: Method \App\Providers\RouteServiceProvider::boot() does not have void return type hint.
   app/Support/Http/Middleware/Authenticate.php:13: Method \Support\Http\Middleware\Authenticate::redirectTo() does not have return type hint nor @return annotation for its return value.
-  app/Support/Http/Middleware/AuthenticateApp.php:10: Method \Support\Http\Middleware\AuthenticateApp::handle() does not have return type hint nor @return annotation for its return value.
+  app/Support/Http/Middleware/AuthenticateApp.php:11: Method \Support\Http\Middleware\AuthenticateApp::handle() does not have return type hint nor @return annotation for its return value.
   routes/console.php:17: Closure does not have void return type hint.
 
 • [Code] Unused parameter: (SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff)
