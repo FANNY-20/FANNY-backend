@@ -16,13 +16,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Geolocation extends Model
 {
-    /** @var bool */
+    /** @var bool
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     public $incrementing = false;
 
-    /** @var string */
+    /**
+     * @var string
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $primaryKey = 'uuid';
 
-    /** @var array<string,string> */
+    /**
+     * @var array<string,string>
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected $casts = [
         'location' => LocationCast::class,
     ];
