@@ -28,6 +28,7 @@ SESSION_DRIVER=redis
 MAIL_MAILER=log
 
 APP_TOKEN=u5ag50qVviYq4L20nUdTagBhVajrlVpVc3wqZ37wcKQnQdSqAFZbcfNgecQ9KeyJ
+HORIZON_TOKEN=bXX9z5FFVk3z3pnITE1IvzpkYFma4J5AdJrOT9vLAnsWudzLCopVCz2ha4hq
 EOF
 
 php artisan key:generate
