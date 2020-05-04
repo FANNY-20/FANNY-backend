@@ -9,6 +9,9 @@ class UpdateGeolocationAction
 {
     public function execute(UpdateGeolocationDTO $data): Geolocation
     {
-        return tap($data->geolocation)->update(['location' => $data->location]);
+        $data->geolocation->location = $data->location;
+        $data->geolocation->save();
+
+        return $data->geolocation;
     }
 }
