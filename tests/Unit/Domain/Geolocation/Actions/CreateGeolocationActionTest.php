@@ -17,7 +17,7 @@ class CreateGeolocationActionTest extends TestCase
      * @test
      * @covers ::execute
      */
-    public function geolocationIsStored()
+    public function geolocationIsCreated()
     {
         $data = new CreateGeolocationDTO([
             'uuid' => 'azerty123456789',

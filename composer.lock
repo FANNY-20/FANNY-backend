@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ffce73b345aff181feb3ebf502af016",
+    "content-hash": "607330ad24a47b1c70089f9cf6d51644",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2247,6 +2247,70 @@
                 "rollbar"
             ],
             "time": "2020-03-03T20:09:19+00:00"
+        },
+        {
+            "name": "soyhuce/rules",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.soyhuce.lan:backend-package/rules.git",
+                "reference": "e5a2f5f3f3f36183d7540eacf50ae2cb6459d5e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://storkist.soyhuce.lan/storage/dist/soyhuce/rules/soyhuce-rules-e5a2f5f3f3f36183d7540eacf50ae2cb6459d5e4-zip-2a596e.zip",
+                "reference": "e5a2f5f3f3f36183d7540eacf50ae2cb6459d5e4",
+                "shasum": "3ee28615534e1ec7aeb550103e7ba604f6483917"
+            },
+            "archive": {
+                "exclude": [
+                    "phpunit.xml",
+                    ".gitignore",
+                    "tests",
+                    "composer.lock"
+                ]
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "~3.7",
+                "phpunit/phpunit": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Soyhuce\\Rules\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Soyhuce\\Rules\\Test\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit --configuration phpunit.xml"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Bastien Philippe",
+                    "email": "bastien.philippe@soyhuce.fr"
+                }
+            ],
+            "description": "A set of useful rules for Laravel",
+            "keywords": [
+                "database",
+                "laravel",
+                "rules",
+                "validation"
+            ],
+            "time": "2019-12-02T11:56:46+01:00"
         },
         {
             "name": "soyhuce/service-provider-registrar",
@@ -8326,6 +8390,73 @@
                 "sublime"
             ],
             "time": "2020-02-26T17:02:26+01:00"
+        },
+        {
+            "name": "soyhuce/model-injection",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.soyhuce.lan:backend-package/model-injection.git",
+                "reference": "299be4624caa31c5a9c90ada998fe403316b96fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://storkist.soyhuce.lan/storage/dist/soyhuce/model-injection/soyhuce-model-injection-299be4624caa31c5a9c90ada998fe403316b96fa-zip-69dd03.zip",
+                "reference": "299be4624caa31c5a9c90ada998fe403316b96fa",
+                "shasum": "efacc69f88c590228d21afeac5576f24f8059245"
+            },
+            "require": {
+                "illuminate/support": "^5.6|^6.0|^7.0",
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.0",
+                    "dev-develop": "1.7.x"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Soyhuce\\ModelInjection\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Soyhuce\\ModelInjection\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "check-style": [
+                    "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ],
+                "fix-style": [
+                    "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bastien Philippe",
+                    "email": "bastien.philippe@soyhuce.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Aide au binding explicite Laravel",
+            "homepage": "https://github.com/soyhuce/model-injection",
+            "keywords": [
+                "ModelInjection",
+                "Soyhuce"
+            ],
+            "time": "2020-03-03T09:18:25+01:00"
         },
         {
             "name": "soyhuce/next-ide-helper",

@@ -1,31 +1,30 @@
 [SUMMARY]
 
 Code .......................................................... 96.9 %
-Complexity .................................................... 95.7 %
+Complexity .................................................... 96.4 %
 Architecture ................................................. 100.0 %
 Style ........................................................ 100.0 %
 
-[CODE] 96.9 pts within 281 lines
+[CODE] 96.9 pts within 324 lines
 
-Comments ...................................................... 49.5 %
-Classes ....................................................... 19.2 %
-Functions ...................................................... 1.8 %
-Globally ...................................................... 29.5 %
+Comments ...................................................... 46.9 %
+Classes ....................................................... 20.7 %
+Functions ...................................................... 1.5 %
+Globally ...................................................... 30.9 %
 
-[COMPLEXITY] 95.7 pts with average of 1.13 cyclomatic complexity
+[COMPLEXITY] 96.4 pts with average of 1.11 cyclomatic complexity
 
-[ARCHITECTURE] 100 pts within 29 files
+[ARCHITECTURE] 100 pts within 32 files
 
-Classes ....................................................... 89.7 %
+Classes ....................................................... 90.6 %
 Interfaces ..................................................... 0.0 %
-Globally ...................................................... 10.3 %
+Globally ....................................................... 9.4 %
 Traits ......................................................... 0.0 %
 
 [MISC] 100 pts on coding style and 0 security issues encountered
 
 • [Code] Useless overriding method: (PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff)
   app/App/Providers/HorizonServiceProvider.php:9: Possible useless method overriding detected
-  app/App/Providers/RouteServiceProvider.php:10: Possible useless method overriding detected
 
 • [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
   app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
@@ -36,7 +35,6 @@ Traits ......................................................... 0.0 %
   app/Support/HttpKernel.php:54: Property \Support\HttpKernel::$routeMiddleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
 
 • [Code] Return type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff)
-  app/App/Providers/RouteServiceProvider.php:10: Method \App\Providers\RouteServiceProvider::boot() does not have void return type hint.
   app/Support/Http/Middleware/Authenticate.php:13: Method \Support\Http\Middleware\Authenticate::redirectTo() does not have return type hint nor @return annotation for its return value.
   app/Support/Http/Middleware/AuthenticateApp.php:11: Method \Support\Http\Middleware\AuthenticateApp::handle() does not have return type hint nor @return annotation for its return value.
 

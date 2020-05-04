@@ -3,8 +3,14 @@
 namespace App\Api\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Soyhuce\Rules\DbRules;
 
-class StoreGeolocationRequest extends FormRequest
+/**
+ * @property-read string $uuid
+ * @property-read float $lat
+ * @property-read float $lon
+ */
+class CreateGeolocationRequest extends FormRequest
 {
     /**
      * @return array<string, string>
@@ -12,7 +18,7 @@ class StoreGeolocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uuid' => 'required|string|unique:geolocations,uuid',
+            'uuid' => rules(['required', DbRules::string(), 'unique:geolocations,uuid']),
             'lat' => 'required|numeric|min:-90|max:90',
             'lon' => 'required|numeric|min:-180|max:180',
         ];

@@ -2,17 +2,17 @@
 
 namespace Domain\Geolocation\DTO;
 
-use App\Api\Requests\StoreGeolocationRequest;
+use App\Api\Requests\CreateGeolocationRequest;
 use Domain\Geolocation\Models\Point;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CreateGeolocationDTO extends DataTransferObject
 {
-    public string $uuid;
+    public ?string $uuid;
 
     public Point $location;
 
-    public static function fromRequest(StoreGeolocationRequest $request): self
+    public static function fromRequest(CreateGeolocationRequest $request): self
     {
         return new self([
             'uuid' => $request->uuid,

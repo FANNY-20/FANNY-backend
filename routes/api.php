@@ -4,7 +4,6 @@ use App\Api\Controllers\GeolocationController;
 use Support\Http\Middleware\AuthenticateApp;
 
 Route::group(['middleware' => AuthenticateApp::class], static function (): void {
-    Route::group(['prefix' => 'geolocations'], static function (): void {
-        Route::post('/', [GeolocationController::class, 'store']);
-    });
+    Route::post('geolocations', [GeolocationController::class, 'store']);
+    Route::put('geolocations/{geolocation}', [GeolocationController::class, 'update']);
 });
