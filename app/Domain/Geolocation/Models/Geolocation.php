@@ -7,6 +7,7 @@ use Domain\Meet\Models\Meet;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $uuid
@@ -39,6 +40,12 @@ class Geolocation extends Model
     public function meets(): HasMany
     {
         return $this->hasMany(Meet::class, 'geolocation_from');
+    }
+
+    public function scopeNewerThan(Builder $query, int $time): Builder
+    {
+        return $query
+            ->where('updated_at', '>', Carbon::now()->subMinutes($time));
     }
 
     /**

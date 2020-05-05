@@ -29,7 +29,7 @@ class Meet extends Model
         return $this->belongsTo(Geolocation::class, 'geolocation_to');
     }
 
-    public function scopeAtLeast(Builder $query, int $time): Builder
+    public function scopeOlderThan(Builder $query, int $time): Builder
     {
         return $query
             ->where('updated_at', '<', Carbon::now()->subSeconds($time));

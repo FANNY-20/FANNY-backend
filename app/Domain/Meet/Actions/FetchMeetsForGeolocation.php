@@ -24,12 +24,8 @@ class FetchMeetsForGeolocation
 
         $meets = $geolocation->meets()
             ->whereIn('geolocation_to', $nearsId)
-            ->atLeast(config('stop-covid.geolocation.time'))
+            ->olderThan(config('stop-covid.geolocation.time'))
             ->get();
-
-        if ($meets->isEmpty()) {
-            return collect();
-        }
 
         foreach ($nearsId as $nearId) {
             $this->updateMeet->execute($geolocation->uuid, $nearId);
@@ -46,6 +42,7 @@ class FetchMeetsForGeolocation
         return Geolocation::select('uuid')
             ->where('uuid', '!=', $geolocation->uuid)
             ->nearTo($geolocation->location, config('stop-covid.geolocation.distance'))
+            ->newerThan(10)
             ->get()
             ->pluck('uuid')
             ->toArray();

@@ -110,13 +110,44 @@ class FetchMeetsForGeolocationTest extends TestCase
             ['location' => new Point(49.172627687418, -0.37168979644775)]
         );
 
-        factory(Meet::class)->create([
+        $meet = factory(Meet::class)->create([
             'geolocation_from' => $geolocation->uuid,
             'geolocation_to' => factory(Geolocation::class)->create(
                 ['location' => new Point(49.172701337742, -0.37175953388214)]
             ),
             'updated_at' => now()->subSeconds(20),
         ]);
+
+        $this->mock->shouldReceive('execute')
+            ->withArgs(static function (string $from, string $to) use ($geolocation, $meet) {
+                return $from === $geolocation->uuid && $to === $meet->geolocation_to;
+            })
+            ->once();
+        app()->bind(UpdateMeetAction::class, fn () => $this->mock);
+
+        $meets = app(FetchMeetsForGeolocation::class)->execute($geolocation);
+
+        $this->assertEmpty($meets);
+    }
+
+    /**
+     * @test
+     * @covers ::execute
+     */
+    public function resultsIsEmptyWhenMeetExistsButGeolocationIsOlder()
+    {
+        Carbon::setTestNow(now());
+
+        $geolocation = factory(Geolocation::class)->create(
+            ['location' => new Point(49.172627687418, -0.37168979644775)]
+        );
+
+        factory(Geolocation::class)->create(
+            [
+                'location' => new Point(49.172701337742, -0.37175953388214),
+                'updated_at' => now()->subDay(),
+            ]
+        );
 
         $meets = app(FetchMeetsForGeolocation::class)->execute($geolocation);
 
