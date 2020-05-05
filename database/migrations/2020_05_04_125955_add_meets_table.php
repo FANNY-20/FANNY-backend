@@ -14,6 +14,7 @@ class AddMeetsTable extends Migration
             $table->string('geolocation_to');
             $table->timestamps();
 
+            $table->index('updated_at');
             $table->unique(['geolocation_from', 'geolocation_to']);
 
             $table->foreign('geolocation_from')

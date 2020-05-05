@@ -4,7 +4,7 @@
 
 use Domain\Geolocation\Models\Geolocation;
 use Domain\Geolocation\Models\Point;
-use Domain\Meet\Meet;
+use Domain\Meet\Models\Meet;
 use Faker\Generator as Faker;
 
 $factory->define(Geolocation::class, static function (Faker $faker) {
