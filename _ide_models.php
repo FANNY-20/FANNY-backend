@@ -11,16 +11,16 @@ namespace Domain\Geolocation\Models {
     }
 }
 
-namespace Domain\Meet {
+namespace Domain\Meet\Models {
 
     /**
-     * @method \IdeHelper\Domain\Meet\MeetQuery query()
-     * @mixin \IdeHelper\Domain\Meet\MeetQuery
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery query()
+     * @mixin \IdeHelper\Domain\Meet\Models\MeetQuery
      */
     class Meet {
-        public function from(): \IdeHelper\Domain\Meet\Meet\From {}
+        public function from(): \IdeHelper\Domain\Meet\Models\Meet\From {}
 
-        public function to(): \IdeHelper\Domain\Meet\Meet\To {}
+        public function to(): \IdeHelper\Domain\Meet\Models\Meet\To {}
     }
 }
 
@@ -31,6 +31,9 @@ namespace IdeHelper\Domain\Geolocation\Models {
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery whereLocation(\Domain\Geolocation\Models\Point|string $value)
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery whereCreatedAt(\Illuminate\Support\Carbon|string $value)
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery whereUpdatedAt(\Illuminate\Support\Carbon|string $value)
+     * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery newerThan(int $time)
+     * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery nearTo($point, int $distance)
+     * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery farFrom($point, int $distance)
      * @method \Domain\Geolocation\Models\Geolocation create(array $attributes = [])
      * @method \Illuminate\Database\Eloquent\Collection|\Domain\Geolocation\Models\Geolocation|null find($id, array $columns = ['*'])
      * @method \Illuminate\Database\Eloquent\Collection findMany($id, array $columns = ['*'])
@@ -55,41 +58,42 @@ namespace IdeHelper\Domain\Geolocation\Models {
 namespace IdeHelper\Domain\Geolocation\Models\Geolocation {
 
     /**
-     * @mixin \Domain\Meet\Meet
+     * @mixin \Domain\Meet\Models\Meet
      */
     class Meets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
 }
 
-namespace IdeHelper\Domain\Meet {
+namespace IdeHelper\Domain\Meet\Models {
 
     /**
-     * @method \IdeHelper\Domain\Meet\MeetQuery whereId(int|string $value)
-     * @method \IdeHelper\Domain\Meet\MeetQuery whereGeolocationFrom(string $value)
-     * @method \IdeHelper\Domain\Meet\MeetQuery whereGeolocationTo(string $value)
-     * @method \IdeHelper\Domain\Meet\MeetQuery whereCreatedAt(\Illuminate\Support\Carbon|string $value)
-     * @method \IdeHelper\Domain\Meet\MeetQuery whereUpdatedAt(\Illuminate\Support\Carbon|string $value)
-     * @method \Domain\Meet\Meet create(array $attributes = [])
-     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Meet|null find($id, array $columns = ['*'])
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereId(int|string $value)
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereGeolocationFrom(string $value)
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereGeolocationTo(string $value)
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereCreatedAt(\Illuminate\Support\Carbon|string $value)
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereUpdatedAt(\Illuminate\Support\Carbon|string $value)
+     * @method \IdeHelper\Domain\Meet\Models\MeetQuery olderThan(int $time)
+     * @method \Domain\Meet\Models\Meet create(array $attributes = [])
+     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Models\Meet|null find($id, array $columns = ['*'])
      * @method \Illuminate\Database\Eloquent\Collection findMany($id, array $columns = ['*'])
-     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Meet findOrFail($id, array $columns = ['*'])
-     * @method \Domain\Meet\Meet findOrNew($id, array $columns = ['*'])
-     * @method \Domain\Meet\Meet|null first(array|string $columns = ['*'])
-     * @method \Domain\Meet\Meet firstOrCreate(array $attributes, array $values = [])
-     * @method \Domain\Meet\Meet firstOrFail(array $columns = ['*'])
-     * @method \Domain\Meet\Meet firstOrNew(array $attributes = [], array $values = [])
-     * @method \Domain\Meet\Meet forceCreate(array $attributes = [])
+     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Models\Meet findOrFail($id, array $columns = ['*'])
+     * @method \Domain\Meet\Models\Meet findOrNew($id, array $columns = ['*'])
+     * @method \Domain\Meet\Models\Meet|null first(array|string $columns = ['*'])
+     * @method \Domain\Meet\Models\Meet firstOrCreate(array $attributes, array $values = [])
+     * @method \Domain\Meet\Models\Meet firstOrFail(array $columns = ['*'])
+     * @method \Domain\Meet\Models\Meet firstOrNew(array $attributes = [], array $values = [])
+     * @method \Domain\Meet\Models\Meet forceCreate(array $attributes = [])
      * @method \Illuminate\Database\Eloquent\Collection get(array|string $columns = ['*'])
-     * @method \Domain\Meet\Meet getModel()
+     * @method \Domain\Meet\Models\Meet getModel()
      * @method \Illuminate\Database\Eloquent\Collection getModels(array|string $columns = ['*'])
-     * @method \Domain\Meet\Meet newModelInstance(array $attributes = [])
-     * @method \Domain\Meet\Meet updateOrCreate(array $attributes, array $values = [])
+     * @method \Domain\Meet\Models\Meet newModelInstance(array $attributes = [])
+     * @method \Domain\Meet\Models\Meet updateOrCreate(array $attributes, array $values = [])
      * @template TModelClass
-     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Meet\Meet>
+     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Meet\Models\Meet>
      */
     class MeetQuery extends \Illuminate\Database\Eloquent\Builder {}
 }
 
-namespace IdeHelper\Domain\Meet\Meet {
+namespace IdeHelper\Domain\Meet\Models\Meet {
 
     /**
      * @mixin \Domain\Geolocation\Models\Geolocation

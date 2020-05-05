@@ -3,18 +3,25 @@
 namespace App\Api\Controllers;
 
 use App\Api\Requests\CreateOrUpdateGeolocationRequest;
+use App\Api\Resources\GeolocationMeetList;
 use Domain\Geolocation\Actions\SaveGeolocationAction;
 use Domain\Geolocation\DTO\GeolocationDTO;
-use Illuminate\Http\JsonResponse;
+use Domain\Meet\Actions\FetchMeetsForGeolocation;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class GeolocationController
 {
-    public function store(CreateOrUpdateGeolocationRequest $request, SaveGeolocationAction $storeAction): JsonResponse
-    {
+    public function store(
+        CreateOrUpdateGeolocationRequest $request,
+        SaveGeolocationAction $storeAction,
+        FetchMeetsForGeolocation $meetsForGeolocation
+    ): JsonResource {
         $data = GeolocationDTO::fromRequest($request);
 
-        $storeAction->execute($data);
+        $geolocation = $storeAction->execute($data);
 
-        return response()->json();
+        $meets = $meetsForGeolocation->execute($geolocation);
+
+        return GeolocationMeetList::collection($meets);
     }
 }

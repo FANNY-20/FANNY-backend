@@ -1,10 +1,12 @@
 <?php
 
-namespace Domain\Meet;
+namespace Domain\Meet\Models;
 
 use Domain\Geolocation\Models\Geolocation;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -25,5 +27,11 @@ class Meet extends Model
     public function to(): BelongsTo
     {
         return $this->belongsTo(Geolocation::class, 'geolocation_to');
+    }
+
+    public function scopeOlderThan(Builder $query, int $time): Builder
+    {
+        return $query
+            ->where('updated_at', '<', Carbon::now()->subSeconds($time));
     }
 }
