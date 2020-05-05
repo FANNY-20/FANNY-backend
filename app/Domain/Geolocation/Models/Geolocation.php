@@ -42,10 +42,7 @@ class Geolocation extends Model
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param \Domain\Geolocation\Models\Point|array<float> $point
-     * @param int $distance
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeNearTo(Builder $query, $point, int $distance): Builder
     {
@@ -53,10 +50,7 @@ class Geolocation extends Model
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param \Domain\Geolocation\Models\Point|array<float> $point
-     * @param int $distance
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeFarFrom(Builder $query, $point, int $distance): Builder
     {
@@ -64,13 +58,9 @@ class Geolocation extends Model
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param \Domain\Geolocation\Models\Point|array<float> $point
-     * @param int $distance
-     * @param string $operator
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    private function withDistance(Builder $query, $point, int $distance, string $operator)
+    private function withDistance(Builder $query, $point, int $distance, string $operator): Builder
     {
         if ($point instanceof Point) {
             $point = $point->toArray();

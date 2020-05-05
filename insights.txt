@@ -1,16 +1,16 @@
 [SUMMARY]
 
-Code .......................................................... 96.9 %
+Code .......................................................... 97.9 %
 Complexity .................................................... 92.7 %
 Architecture .................................................. 95.5 %
 Style ........................................................ 100.0 %
 
-[CODE] 96.9 pts within 355 lines
+[CODE] 97.9 pts within 345 lines
 
-Comments ...................................................... 50.1 %
-Classes ....................................................... 21.1 %
-Functions ...................................................... 1.1 %
-Globally ...................................................... 27.6 %
+Comments ...................................................... 48.7 %
+Classes ....................................................... 21.7 %
+Functions ...................................................... 1.2 %
+Globally ...................................................... 28.4 %
 
 [COMPLEXITY] 92.7 pts with average of 1.22 cyclomatic complexity
 
@@ -23,15 +23,6 @@ Traits ......................................................... 0.0 %
 
 [MISC] 100 pts on coding style and 0 security issues encountered
 
-• [Code] Parameter type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff)
-  app/Domain/Geolocation/Models/Geolocation.php:45: Method \Domain\Geolocation\Models\Geolocation::scopeNearTo() has useless @param annotation for parameter $query.
-  app/Domain/Geolocation/Models/Geolocation.php:47: Method \Domain\Geolocation\Models\Geolocation::scopeNearTo() has useless @param annotation for parameter $distance.
-  app/Domain/Geolocation/Models/Geolocation.php:56: Method \Domain\Geolocation\Models\Geolocation::scopeFarFrom() has useless @param annotation for parameter $query.
-  app/Domain/Geolocation/Models/Geolocation.php:58: Method \Domain\Geolocation\Models\Geolocation::scopeFarFrom() has useless @param annotation for parameter $distance.
-  app/Domain/Geolocation/Models/Geolocation.php:67: Method \Domain\Geolocation\Models\Geolocation::withDistance() has useless @param annotation for parameter $query.
-  app/Domain/Geolocation/Models/Geolocation.php:69: Method \Domain\Geolocation\Models\Geolocation::withDistance() has useless @param annotation for parameter $distance.
-  app/Domain/Geolocation/Models/Geolocation.php:70: Method \Domain\Geolocation\Models\Geolocation::withDistance() has useless @param annotation for parameter $operator.
-
 • [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
   app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
   app/Support/HttpKernel.php:16: Property \Support\HttpKernel::$middleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
@@ -41,9 +32,6 @@ Traits ......................................................... 0.0 %
   app/Support/HttpKernel.php:54: Property \Support\HttpKernel::$routeMiddleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
 
 • [Code] Return type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff)
-  app/Domain/Geolocation/Models/Geolocation.php:48: Method \Domain\Geolocation\Models\Geolocation::scopeNearTo() has useless @return annotation.
-  app/Domain/Geolocation/Models/Geolocation.php:59: Method \Domain\Geolocation\Models\Geolocation::scopeFarFrom() has useless @return annotation.
-  app/Domain/Geolocation/Models/Geolocation.php:73: Method \Domain\Geolocation\Models\Geolocation::withDistance() does not have native return type hint for its return value but it should be possible to add it based on @return annotation "\Illuminate\Database\Eloquent\Builder".
   app/Support/Http/Middleware/Authenticate.php:13: Method \Support\Http\Middleware\Authenticate::redirectTo() does not have return type hint nor @return annotation for its return value.
   app/Support/Http/Middleware/AuthenticateApp.php:11: Method \Support\Http\Middleware\AuthenticateApp::handle() does not have return type hint nor @return annotation for its return value.
 
