@@ -1,27 +1,36 @@
 [SUMMARY]
 
-Code .......................................................... 97.9 %
-Complexity .................................................... 93.9 %
-Architecture ................................................. 100.0 %
+Code .......................................................... 94.8 %
+Complexity .................................................... 95.2 %
+Architecture .................................................. 95.5 %
 Style ........................................................ 100.0 %
 
-[CODE] 97.9 pts within 346 lines
+[CODE] 94.8 pts within 380 lines
 
-Comments ...................................................... 48.6 %
-Classes ....................................................... 21.7 %
-Functions ...................................................... 1.2 %
-Globally ...................................................... 28.6 %
+Comments ...................................................... 48.7 %
+Classes ....................................................... 22.9 %
+Functions ...................................................... 1.1 %
+Globally ...................................................... 27.4 %
 
-[COMPLEXITY] 93.9 pts with average of 1.18 cyclomatic complexity
+[COMPLEXITY] 95.2 pts with average of 1.14 cyclomatic complexity
 
-[ARCHITECTURE] 100 pts within 32 files
+[ARCHITECTURE] 95.5 pts within 33 files
 
-Classes ....................................................... 90.6 %
+Classes ....................................................... 90.9 %
 Interfaces ..................................................... 0.0 %
-Globally ....................................................... 9.4 %
+Globally ....................................................... 9.1 %
 Traits ......................................................... 0.0 %
 
 [MISC] 100 pts on coding style and 0 security issues encountered
+
+• [Code] Unused private elements: (SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff)
+  app/Domain/Meet/Actions/FetchMeetsForGeolocation.php:79: Class FetchMeetsForGeolocation contains unused private method saveMeets().
+
+• [Code] Unused variable: (SlevomatCodingStandard\Sniffs\Variables\UnusedVariableSniff)
+  app/Domain/Meet/Actions/FetchMeetsForGeolocation.php:91: Unused variable $query.
+
+• [Code] Parameter type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff)
+  app/Domain/Meet/Actions/FetchMeetsForGeolocation.php:79: Method \Domain\Meet\Actions\FetchMeetsForGeolocation::saveMeets() does not have @param annotation for its traversable parameter $uuids.
 
 • [Code] Property type hint: (SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff)
   app/Support/HttpKernel.php:14: @var annotation of property \Support\HttpKernel::$middleware does not specify type hint for its items.
@@ -32,6 +41,10 @@ Traits ......................................................... 0.0 %
   app/Support/HttpKernel.php:54: Property \Support\HttpKernel::$routeMiddleware does not have native type hint for its value but it should be possible to add it based on @var annotation "array".
 
 • [Code] Return type hint: (SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff)
+  app/Domain/Meet/Actions/FetchMeetsForGeolocation.php:79: Method \Domain\Meet\Actions\FetchMeetsForGeolocation::saveMeets() does not have void return type hint.
   app/Support/Http/Middleware/Authenticate.php:13: Method \Support\Http\Middleware\Authenticate::redirectTo() does not have return type hint nor @return annotation for its return value.
   app/Support/Http/Middleware/AuthenticateApp.php:11: Method \Support\Http\Middleware\AuthenticateApp::handle() does not have return type hint nor @return annotation for its return value.
+
+• [Architecture] Function length: (ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff)
+  app/Domain/Meet/Actions/FetchMeetsForGeolocation.php:24: Your function is too long. Currently using 41 lines. Can be up to 20 lines.
 

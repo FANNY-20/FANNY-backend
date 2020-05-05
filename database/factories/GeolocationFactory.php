@@ -15,7 +15,7 @@ $factory->define(Geolocation::class, static function (Faker $faker) {
 });
 $factory->afterCreatingState(
     Geolocation::class,
-    'with-meets',
+    'with-meet',
     static function (Geolocation $geolocation, Faker $faker) {
         factory(Meet::class)->create(['geolocation_from' => $geolocation]);
     }

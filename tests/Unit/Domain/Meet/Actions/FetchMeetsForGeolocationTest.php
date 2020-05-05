@@ -4,6 +4,7 @@ namespace Tests\Unit\Domain\Meet\Actions;
 
 use Domain\Geolocation\Models\Geolocation;
 use Domain\Geolocation\Models\Point;
+use Domain\Meet\Actions\CleanOlderMeetsAction;
 use Domain\Meet\Actions\FetchMeetsForGeolocation;
 use Domain\Meet\Actions\UpdateMeetAction;
 use Domain\Meet\Models\Meet;
@@ -19,13 +20,19 @@ class FetchMeetsForGeolocationTest extends TestCase
     /**
      * @var \Domain\Meet\Actions\UpdateMeetAction|\Mockery\LegacyMockInterface|\Mockery\MockInterface
      */
-    private $mock;
+    private $updateMeetMock;
+
+    /**
+     * @var \Domain\Meet\Actions\UpdateMeetAction|\Mockery\LegacyMockInterface|\Mockery\MockInterface
+     */
+    private $cleanOlderMeetsMock;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->mock = Mockery::mock(UpdateMeetAction::class);
+        $this->updateMeetMock = Mockery::mock(UpdateMeetAction::class);
+        $this->cleanOlderMeetsMock = Mockery::mock(CleanOlderMeetsAction::class);
     }
 
     /**
@@ -61,12 +68,19 @@ class FetchMeetsForGeolocationTest extends TestCase
             'updated_at' => now()->subSeconds(35),
         ]);
 
-        $this->mock->shouldReceive('execute')
-            ->withArgs(static function (string $from, string $to) use ($geolocation, $meet) {
+        /*$this->updateMeetMock->shouldReceive('execute')
+            ->withArgs(static function (string $from, string $to) use ($geolocation, $meet): bool {
                 return $from === $geolocation->uuid && $to === $meet->geolocation_to;
             })
             ->once();
-        app()->bind(UpdateMeetAction::class, fn () => $this->mock);
+        app()->bind(UpdateMeetAction::class, fn () => $this->updateMeetMock);*/
+
+        $this->cleanOlderMeetsMock->shouldReceive('execute')
+            ->withArgs(static function (Geolocation $currentGeolocation, array $uuids) use ($geolocation, $meet): bool {
+                return $currentGeolocation->id === $geolocation->id && in_array($meet->geolocation_to, $uuids);
+            })
+            ->once();
+        app()->bind(CleanOlderMeetsAction::class, fn () => $this->cleanOlderMeetsMock);
 
         $meets = app(FetchMeetsForGeolocation::class)->execute($geolocation);
 
@@ -118,12 +132,19 @@ class FetchMeetsForGeolocationTest extends TestCase
             'updated_at' => now()->subSeconds(20),
         ]);
 
-        $this->mock->shouldReceive('execute')
+        /*$this->updateMeetMock->shouldReceive('execute')
             ->withArgs(static function (string $from, string $to) use ($geolocation, $meet) {
                 return $from === $geolocation->uuid && $to === $meet->geolocation_to;
             })
+            ->once();*/
+        app()->bind(UpdateMeetAction::class, fn () => $this->updateMeetMock);
+
+        $this->cleanOlderMeetsMock->shouldReceive('execute')
+            ->withArgs(static function (Geolocation $currentGeolocation, array $uuids) use ($geolocation, $meet): bool {
+                return $currentGeolocation->id === $geolocation->id && in_array($meet->geolocation_to, $uuids);
+            })
             ->once();
-        app()->bind(UpdateMeetAction::class, fn () => $this->mock);
+        app()->bind(CleanOlderMeetsAction::class, fn () => $this->cleanOlderMeetsMock);
 
         $meets = app(FetchMeetsForGeolocation::class)->execute($geolocation);
 

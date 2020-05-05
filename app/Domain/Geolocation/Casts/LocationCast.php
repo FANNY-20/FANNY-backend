@@ -24,7 +24,7 @@ class LocationCast implements CastsAttributes
             ->first(DB::raw("ST_AsText(ST_GeomFromEWKT('{$value}')) as point"))
             ->point;
 
-        [$lat, $lon] = Str::of($point)
+        [$lon, $lat] = Str::of($point)
             ->substr(5)
             ->trim('()')
             ->explode(' ');
@@ -41,6 +41,6 @@ class LocationCast implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes): Expression
     {
-        return DB::raw("ST_GeomFromText('POINT({$value->latitude} {$value->longitude})')");
+        return DB::raw("ST_GeomFromText('POINT({$value->longitude} {$value->latitude})')");
     }
 }
