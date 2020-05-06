@@ -111,8 +111,7 @@ ansiColor('xterm') {
                 }
             }
 
-            // TODO : set to develop
-            if (branchName == 'feature') {
+            if (branchName == 'develop') {
                 stage('sonarqube') {
                     def sonarProject = "stopcovid-stopcovid--sonar-${BRANCH_NAME}_${BUILD_NUMBER}"
 
