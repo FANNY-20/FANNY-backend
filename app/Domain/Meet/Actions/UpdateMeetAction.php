@@ -6,12 +6,9 @@ use Domain\Meet\Models\Meet;
 
 class UpdateMeetAction
 {
-    public function execute(string $fromUuid, string $toUuid): void
+    public function execute(Meet $meet): void
     {
-        Meet::updateOrCreate([
-            'geolocation_from' => $fromUuid,
-            'geolocation_to' => $toUuid,
-        ], [
+        $meet->update([
             'created_at' => now(),
             'updated_at' => now(),
         ]);

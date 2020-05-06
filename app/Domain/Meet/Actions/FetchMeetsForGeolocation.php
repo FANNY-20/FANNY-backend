@@ -3,20 +3,27 @@
 namespace Domain\Meet\Actions;
 
 use Domain\Geolocation\Models\Geolocation;
+use Domain\Meet\Collections\MeetCollection;
 use Domain\Meet\Models\Meet;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class FetchMeetsForGeolocation
 {
+    private CreateMeetAction $createMeet;
+
     private UpdateMeetAction $updateMeet;
 
     private CleanOlderMeetsAction $cleanOlderMeets;
 
     private Geolocation $geolocation;
 
-    public function __construct(UpdateMeetAction $updateMeet, CleanOlderMeetsAction $cleanOlderMeets)
-    {
+    public function __construct(
+        CreateMeetAction $createMeet,
+        UpdateMeetAction $updateMeet,
+        CleanOlderMeetsAction $cleanOlderMeets
+    ) {
+        $this->createMeet = $createMeet;
         $this->updateMeet = $updateMeet;
         $this->cleanOlderMeets = $cleanOlderMeets;
     }
@@ -25,78 +32,76 @@ class FetchMeetsForGeolocation
     {
         $this->geolocation = $geolocation;
 
-        // liste des uuids dans le périmètre de 15m
         $nearsUuids = $this->fetchNearGeolocations();
 
-        $this->cleanOlderMeets->execute($geolocation, $nearsUuids->pluck('uuid')->toArray());
+        $this->cleanOlderMeets->execute($geolocation, $nearsUuids);
 
         if (count($nearsUuids) <= 0) {
             return collect();
         }
 
-        // liste des rencontres de plus de 30 secondes
-        $meets = $this->fetchMeets($nearsUuids->pluck('uuid')->toArray());
+        $meets = $this->fetchMeets($nearsUuids);
 
-        $meetsToCreate = $nearsUuids->pluck('uuid')->diff($meets->pluck('geolocation_to')->toArray())
-            ->values();
+        $this->createMeets($meets, $nearsUuids);
 
-        foreach ($meetsToCreate as $meet) {
-            $geolocation->meets()->create([
-                'geolocation_to' => $meet,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        $matchingMeets = $meets->olderThan(config('stop-covid.geolocation.time'));
 
-        $matchingMeets = $meets->filter(static function (Meet $meet) {
-            return $meet->updated_at < Carbon::now()->subSeconds(config('stop-covid.geolocation.time'));
-        });
+        $this->updateMeets($matchingMeets);
 
-        /** @var \Domain\Meet\Models\Meet $meet */
-        foreach ($matchingMeets as $meet) {
-            $meet->update([
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
-
-        //$this->saveMeets($nearsUuids);
-
-        return $matchingMeets;
+        return $matchingMeets->filter(fn (Meet $meet): bool => $meet->geolocation_to !== $this->geolocation->uuid);
     }
 
     /**
      * @param array<string> $nearsUuids
      */
-    private function fetchMeets(array $nearsUuids): Collection
+    private function fetchMeets(array $nearsUuids): MeetCollection
     {
-        return $this->geolocation->meets()
-            ->whereIn('geolocation_to', $nearsUuids)
-            //->olderThan(config('stop-covid.geolocation.time'))
-            ->get();
+        return Meet::where(function ($query) use ($nearsUuids): Builder {
+            /** @var \Illuminate\Database\Eloquent\Builder|\Domain\Meet\Models\Meet $query */
+            return $query->whereGeolocationFrom($this->geolocation->uuid)
+                ->whereIn('geolocation_to', $nearsUuids);
+        })->orWhere(function ($query) use ($nearsUuids): Builder {
+            /** @var \Illuminate\Database\Eloquent\Builder|\Domain\Meet\Models\Meet $query */
+            return $query->whereGeolocationTo($this->geolocation->uuid)
+                ->whereIn('geolocation_from', $nearsUuids);
+        })->get();
     }
 
-    private function saveMeets(array $uuids)
+    /**
+     * @param array<string> $nearsUuids
+     */
+    private function createMeets(MeetCollection $meets, array $nearsUuids): void
     {
-        foreach ($uuids as $uuid) {
-            $this->updateMeet->execute($this->geolocation->uuid, $uuid);
-        }
+        $meetsToCreate = collect($nearsUuids)
+            ->diff($meets->geolocations());
+
+        $meetsToCreate->each(function (string $uuid): void {
+            $this->createMeet->execute($this->geolocation, $uuid);
+        });
+    }
+
+    private function updateMeets(Collection $meets): void
+    {
+        $meets
+            ->filter(function (Meet $meet): bool {
+                return $meet->geolocation_from === $this->geolocation->uuid;
+            })
+            ->each(function (Meet $meet): void {
+                $this->updateMeet->execute($meet);
+            });
     }
 
     /**
      * @return array<string>
      */
-    private function fetchNearGeolocations(): Collection
+    private function fetchNearGeolocations(): array
     {
-        return $query = Geolocation::select('uuid')
+        return Geolocation::select('uuid')
             ->where('uuid', '!=', $this->geolocation->uuid)
             ->nearTo($this->geolocation->location, config('stop-covid.geolocation.distance'))
-            //->newerThan(10)
-            ->get();
-        /*\Log::debug("{$this->geolocation->uuid} distance de " . $query->pluck('distance'));
-
-        return $query
+            ->newerThan(10)
+            ->get()
             ->pluck('uuid')
-            ->toArray();*/
+            ->toArray();
     }
 }
