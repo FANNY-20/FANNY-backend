@@ -7,7 +7,9 @@ namespace Domain\Geolocation\Models {
      * @mixin \IdeHelper\Domain\Geolocation\Models\GeolocationQuery
      */
     class Geolocation {
-        public function meets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\Meets {}
+        public function initiatedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\InitiatedMeets {}
+
+        public function receivedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\ReceivedMeets {}
     }
 }
 
@@ -60,7 +62,12 @@ namespace IdeHelper\Domain\Geolocation\Models\Geolocation {
     /**
      * @mixin \Domain\Meet\Models\Meet
      */
-    class Meets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
+    class InitiatedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
+
+    /**
+     * @mixin \Domain\Meet\Models\Meet
+     */
+    class ReceivedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
 }
 
 namespace IdeHelper\Domain\Meet\Models {
@@ -71,20 +78,19 @@ namespace IdeHelper\Domain\Meet\Models {
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereGeolocationTo(string $value)
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereCreatedAt(\Illuminate\Support\Carbon|string $value)
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereUpdatedAt(\Illuminate\Support\Carbon|string $value)
-     * @method \IdeHelper\Domain\Meet\Models\MeetQuery olderThan(int $time)
      * @method \Domain\Meet\Models\Meet create(array $attributes = [])
-     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Models\Meet|null find($id, array $columns = ['*'])
-     * @method \Illuminate\Database\Eloquent\Collection findMany($id, array $columns = ['*'])
-     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Meet\Models\Meet findOrFail($id, array $columns = ['*'])
+     * @method \Domain\Meet\Collections\MeetCollection|\Domain\Meet\Models\Meet|null find($id, array $columns = ['*'])
+     * @method \Domain\Meet\Collections\MeetCollection findMany($id, array $columns = ['*'])
+     * @method \Domain\Meet\Collections\MeetCollection|\Domain\Meet\Models\Meet findOrFail($id, array $columns = ['*'])
      * @method \Domain\Meet\Models\Meet findOrNew($id, array $columns = ['*'])
      * @method \Domain\Meet\Models\Meet|null first(array|string $columns = ['*'])
      * @method \Domain\Meet\Models\Meet firstOrCreate(array $attributes, array $values = [])
      * @method \Domain\Meet\Models\Meet firstOrFail(array $columns = ['*'])
      * @method \Domain\Meet\Models\Meet firstOrNew(array $attributes = [], array $values = [])
      * @method \Domain\Meet\Models\Meet forceCreate(array $attributes = [])
-     * @method \Illuminate\Database\Eloquent\Collection get(array|string $columns = ['*'])
+     * @method \Domain\Meet\Collections\MeetCollection get(array|string $columns = ['*'])
      * @method \Domain\Meet\Models\Meet getModel()
-     * @method \Illuminate\Database\Eloquent\Collection getModels(array|string $columns = ['*'])
+     * @method \Domain\Meet\Collections\MeetCollection getModels(array|string $columns = ['*'])
      * @method \Domain\Meet\Models\Meet newModelInstance(array $attributes = [])
      * @method \Domain\Meet\Models\Meet updateOrCreate(array $attributes, array $values = [])
      * @template TModelClass

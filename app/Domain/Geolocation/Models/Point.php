@@ -20,8 +20,8 @@ class Point
     public function toArray(): array
     {
         return [
-            $this->latitude,
             $this->longitude,
+            $this->latitude,
         ];
     }
 

@@ -3,10 +3,9 @@
 namespace Domain\Meet\Models;
 
 use Domain\Geolocation\Models\Geolocation;
-use Illuminate\Database\Eloquent\Builder;
+use Domain\Meet\Collections\MeetCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -16,9 +15,18 @@ use Illuminate\Support\Carbon;
  * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \Domain\Geolocation\Models\Geolocation $from
  * @property-read \Domain\Geolocation\Models\Geolocation $to
+ * @method static \Domain\Meet\Collections\MeetCollection all(array|mixed $columns = ['*'])
  */
 class Meet extends Model
 {
+    /**
+     * @param array<\Domain\Meet\Models\Meet> $models
+     */
+    public function newCollection(array $models = []): MeetCollection
+    {
+        return new MeetCollection($models);
+    }
+
     public function from(): BelongsTo
     {
         return $this->belongsTo(Geolocation::class, 'geolocation_from');
@@ -27,11 +35,5 @@ class Meet extends Model
     public function to(): BelongsTo
     {
         return $this->belongsTo(Geolocation::class, 'geolocation_to');
-    }
-
-    public function scopeOlderThan(Builder $query, int $time): Builder
-    {
-        return $query
-            ->where('updated_at', '<', Carbon::now()->subSeconds($time));
     }
 }

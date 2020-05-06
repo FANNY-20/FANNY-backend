@@ -14,7 +14,8 @@ use Illuminate\Support\Carbon;
  * @property \Domain\Geolocation\Models\Point $location
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<\Domain\Meet\Models\Meet> $meets
+ * @property-read \Domain\Meet\Collections\MeetCollection $initiatedMeets
+ * @property-read \Domain\Meet\Collections\MeetCollection $receivedMeets
  */
 class Geolocation extends Model
 {
@@ -37,9 +38,14 @@ class Geolocation extends Model
         'location' => LocationCast::class,
     ];
 
-    public function meets(): HasMany
+    public function initiatedMeets(): HasMany
     {
         return $this->hasMany(Meet::class, 'geolocation_from');
+    }
+
+    public function receivedMeets(): HasMany
+    {
+        return $this->hasMany(Meet::class, 'geolocation_to');
     }
 
     public function scopeNewerThan(Builder $query, int $time): Builder
