@@ -1,52 +1,58 @@
-# stop-covid-backend
+# FANNY backend
 
 ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg)
 
-## Commandes
+## Commands
 
-### Copier le fichier d'environnement
+### Copy env file
 
 ```bash
 $ cp .env.example .env
 ```
 
-### Générer une clé applicative
+### Generate app key
 
 ```bash
 $ php artisan key:generate
 ```
 
-### Installer les dépendances
+### Install dependencies
 
 ```bash
 $ composer install
 ```
 
-### Lier le dossier de stockage public
+### Link public storage folder
 
 ```bash
 $ php artisan storage:link
 ```
 
-### Publier les assets Horizon
+### Publish Horizon assets
 
 ```bash
 $ php artisan horizon:publish
 ```
 
-### Lancer les migrations de base de données
+### Run Horizon
+
+```bash
+$ php artisan horizon
+```
+
+### Run database migrations
 
 ```bash
 $ php artisan migrate:fresh
 ```
 
-### Lancer les migrations de base de données avec un jeu de donnée
+### Run database migrations with data seeds
 
 ```bash
 $ php artisan migrate:fresh --seed
 ```
 
-### Lancer les tests
+### Run tests
 
 ```bash
 $ php artisan test
