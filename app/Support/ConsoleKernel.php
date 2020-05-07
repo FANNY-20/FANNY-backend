@@ -14,8 +14,15 @@ class ConsoleKernel extends Kernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule
+            ->command('horizon:snapshot')
+            ->onOneServer()
+            ->everyFiveMinutes();
+
+        $schedule
+            ->command('stop-covid:clean-tokens')
+            ->dailyAt('03:00')
+            ->onOneServer();
     }
 
     protected function commands(): void
