@@ -28,6 +28,11 @@ class ConsoleKernel extends Kernel
             ->command('stop-covid:clean-meets')
             ->everyFifteenMinutes()
             ->onOneServer();
+
+        $schedule
+            ->command('stop-covid:clean-geolocations')
+            ->everyTenMinutes()
+            ->onOneServer();
     }
 
     protected function commands(): void

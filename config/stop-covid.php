@@ -15,5 +15,6 @@ return [
     'clean' => [
         'tokens' => 15, // in days
         'meets' => 15, // in minutes
+        'geolocations' => 10, // in minutes
     ],
 ];
