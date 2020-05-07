@@ -46,4 +46,8 @@ $ php artisan migrate:fresh
 $ php artisan migrate:fresh --seed
 ```
 
+### Lancer les tests
 
+```bash
+$ php artisan test
+```
