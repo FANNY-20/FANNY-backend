@@ -11,4 +11,8 @@ return [
         'distance' => 15, // in meters,
         'time' => 30, // in seconds,
     ],
+
+    'cleans' => [
+        'tokens' => 15, // in days
+    ],
 ];
