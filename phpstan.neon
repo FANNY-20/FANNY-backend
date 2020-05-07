@@ -1,0 +1,15 @@
+includes:
+  - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+  bootstrap: ./bootstrap/phpstan.php
+
+  paths:
+    - app
+
+  level: 8
+
+  ignoreErrors:
+
+  checkMissingIterableValueType: false
