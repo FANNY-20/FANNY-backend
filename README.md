@@ -57,3 +57,7 @@ $ php artisan migrate:fresh --seed
 ```bash
 $ php artisan test
 ```
+
+## Changelog
+
+[See CHANGELOG](./CHANGELOG.md)
