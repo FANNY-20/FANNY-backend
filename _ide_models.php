@@ -26,6 +26,15 @@ namespace Domain\Meet\Models {
     }
 }
 
+namespace Domain\Token\Models {
+
+    /**
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery query()
+     * @mixin \IdeHelper\Domain\Token\Models\TokenQuery
+     */
+    class Token {}
+}
+
 namespace IdeHelper\Domain\Geolocation\Models {
 
     /**
@@ -110,4 +119,33 @@ namespace IdeHelper\Domain\Meet\Models\Meet {
      * @mixin \Domain\Geolocation\Models\Geolocation
      */
     class To extends \Illuminate\Database\Eloquent\Relations\BelongsTo {}
+}
+
+namespace IdeHelper\Domain\Token\Models {
+
+    /**
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery whereId(int|string $value)
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery whereValue(string $value)
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery whereRandomValue(string $value)
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery whereCreatedAt(\Illuminate\Support\Carbon|string $value)
+     * @method \IdeHelper\Domain\Token\Models\TokenQuery whereUpdatedAt(\Illuminate\Support\Carbon|string $value)
+     * @method \Domain\Token\Models\Token create(array $attributes = [])
+     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Token\Models\Token|null find($id, array $columns = ['*'])
+     * @method \Illuminate\Database\Eloquent\Collection findMany($id, array $columns = ['*'])
+     * @method \Illuminate\Database\Eloquent\Collection|\Domain\Token\Models\Token findOrFail($id, array $columns = ['*'])
+     * @method \Domain\Token\Models\Token findOrNew($id, array $columns = ['*'])
+     * @method \Domain\Token\Models\Token|null first(array|string $columns = ['*'])
+     * @method \Domain\Token\Models\Token firstOrCreate(array $attributes, array $values = [])
+     * @method \Domain\Token\Models\Token firstOrFail(array $columns = ['*'])
+     * @method \Domain\Token\Models\Token firstOrNew(array $attributes = [], array $values = [])
+     * @method \Domain\Token\Models\Token forceCreate(array $attributes = [])
+     * @method \Illuminate\Database\Eloquent\Collection get(array|string $columns = ['*'])
+     * @method \Domain\Token\Models\Token getModel()
+     * @method \Illuminate\Database\Eloquent\Collection getModels(array|string $columns = ['*'])
+     * @method \Domain\Token\Models\Token newModelInstance(array $attributes = [])
+     * @method \Domain\Token\Models\Token updateOrCreate(array $attributes, array $values = [])
+     * @template TModelClass
+     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Token\Models\Token>
+     */
+    class TokenQuery extends \Illuminate\Database\Eloquent\Builder {}
 }

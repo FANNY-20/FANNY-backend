@@ -21,8 +21,10 @@ class MeetCollection extends Collection
 
     public function olderThan(int $time): self
     {
-        return $this->filter(static function (Meet $meet) use ($time) {
-            return $meet->updated_at < Carbon::now()->subSeconds($time);
+        $now = Carbon::now();
+
+        return $this->filter(static function (Meet $meet) use ($now, $time) {
+            return $now->diffInSeconds($meet->updated_at) > $time;
         });
     }
 }
