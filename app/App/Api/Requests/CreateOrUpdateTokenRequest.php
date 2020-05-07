@@ -16,7 +16,7 @@ class CreateOrUpdateTokenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tokens' => rules(['required', 'array']),
+            'tokens' => 'present|array',
             'tokens.*' => rules(['required', DbRules::string()]),
         ];
     }
