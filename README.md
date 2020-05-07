@@ -2,6 +2,11 @@
 
 ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg)
 
+## Warning, please read carefully
+
+Some packages in the composer.json reference private ones (those starting with `soyhuce/*`).
+Those packages will be released publicly soon. Thus, the installation will fail until these ones are made available.
+
 ## Commands
 
 ### Copy env file
