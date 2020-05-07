@@ -12,7 +12,8 @@ return [
         'time' => 30, // in seconds,
     ],
 
-    'cleans' => [
+    'clean' => [
         'tokens' => 15, // in days
+        'meets' => 15, // in minutes
     ],
 ];
