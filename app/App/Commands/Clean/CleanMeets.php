@@ -2,28 +2,28 @@
 
 namespace App\Commands\Clean;
 
-use Domain\Token\Models\Token;
+use Domain\Meet\Models\Meet;
 use Illuminate\Console\Command;
 
-class CleanTokens extends Command
+class CleanMeets extends Command
 {
     /**
      * @var string
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
-    protected $signature = 'stop-covid:clean-tokens';
+    protected $signature = 'stop-covid:clean-meets';
 
     /**
      * @var string
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
-    protected $description = 'Delete tokens after existing x days';
+    protected $description = 'Delete meets after existing x minutes';
 
     public function handle(): void
     {
-        $date = now()->subDays(config('stop-covid.clean.tokens'));
+        $date = now()->subMinutes(config('stop-covid.clean.meets'));
 
-        Token::whereDate('updated_at', '<', $date)
+        Meet::where('updated_at', '<', $date)
             ->delete();
     }
 }

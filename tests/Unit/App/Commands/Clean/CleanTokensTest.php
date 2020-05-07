@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 /**
- * Class CleanTokensTest
+ * @coversDefaultClass \App\Commands\Clean\CleanTokens
  */
 class CleanTokensTest extends TestCase
 {

@@ -23,6 +23,11 @@ class ConsoleKernel extends Kernel
             ->command('stop-covid:clean-tokens')
             ->dailyAt('03:00')
             ->onOneServer();
+
+        $schedule
+            ->command('stop-covid:clean-meets')
+            ->everyFifteenMinutes()
+            ->onOneServer();
     }
 
     protected function commands(): void
