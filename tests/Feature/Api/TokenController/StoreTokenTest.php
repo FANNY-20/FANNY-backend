@@ -43,7 +43,7 @@ class StoreTokenTest extends TestCase
         )
             ->assertStatus(422)
             ->assertJsonPath('errors', [
-                'tokens' => ['The tokens field is required.'],
+                'tokens' => ['The tokens field must be present.'],
             ]);
     }
 }
