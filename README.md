@@ -2,9 +2,18 @@
 
 ![Release](https://img.shields.io/badge/Release-0.1.0-blue.svg)
 
+## Context
+
+This project is part of the implementation of the FANNY protocol, divided into 2 main distinct projects
+([the API backend](https://github.com/FANNY-20/FANNY-backend) and
+[the hybrid mobile application](https://github.com/FANNY-20/FANNY-hybrid-app)).
+A third project ([the geolocation simulator](https://github.com/FANNY-20/FANNY-geolocation-simulator))
+is also available as a development tool or for manual testing.
+You can learn more about the FANNY protocol itself [here](https://github.com/FANNY-20/The_FANNY_protocol_V0.1).
+
 ## Warning, please read carefully
 
-Some packages in the composer.json reference private ones (those starting with `soyhuce/*`).
+Some packages in the `composer.json` reference privately hosted packages (those starting with `soyhuce/*`).
 Those packages will be released publicly soon. Thus, the installation will fail until these ones are made available.
 
 ## Commands
@@ -66,3 +75,7 @@ $ php artisan test
 ## Changelog
 
 [See CHANGELOG](./CHANGELOG.md)
+
+## License
+
+[MIT](./LICENSE)
