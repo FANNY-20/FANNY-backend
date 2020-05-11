@@ -16,6 +16,26 @@ You can learn more about the FANNY protocol itself [here](https://github.com/FAN
 Some packages in the `composer.json` reference privately hosted packages (those starting with `soyhuce/*`).
 Those packages will be released publicly soon. Thus, the installation will fail until these ones are made available.
 
+## Prerequisites
+
+- PHP 7.4
+- PostgreSQL 12
+- PostGIS 3.0.1 (as an extension of PostgreSQL)
+- Redis server 6.0.1 (but it is not mandatory, you just have to change the env file if you don't want to use Redis)
+- PHP extensions:
+    - json
+    - dom
+    - curl
+    - bcmath
+    - mbstring
+    - pcntl
+    - pgsql
+    - pdo_pgsql
+    - zip
+    - gd
+    - opcache
+    - redis
+
 ## Commands
 
 ### Copy env file
