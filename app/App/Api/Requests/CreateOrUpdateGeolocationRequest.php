@@ -3,7 +3,6 @@
 namespace App\Api\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Soyhuce\Rules\DbRules;
 
 /**
  * @property-read string $uuid
@@ -18,7 +17,7 @@ class CreateOrUpdateGeolocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'uuid' => rules(['required', DbRules::string()]),
+            'uuid' => 'required|string|max:255',
             'lat' => 'required|numeric|min:-90|max:90',
             'lon' => 'required|numeric|min:-180|max:180',
         ];
