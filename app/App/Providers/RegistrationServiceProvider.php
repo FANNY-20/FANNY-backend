@@ -11,7 +11,7 @@ class RegistrationServiceProvider extends ServiceProvider
         \Barryvdh\Debugbar\ServiceProvider::class,
         \NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class,
         \Soyhuce\DevTools\ServiceProvider::class,
-        \Soyhuce\IdeHelper\IdeHelperServiceProvider::class,
+        \Soyhuce\NextIdeHelper\NextIdeHelperServiceProvider::class,
     ];
 
     /** @var array<string> */

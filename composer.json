@@ -30,8 +30,8 @@
         "nunomaduro/larastan": "^0.5.2",
         "nunomaduro/phpinsights": "^1.14",
         "phpunit/phpunit": "^9.0",
-        "soyhuce/dev-tools": "^2.3",
-        "soyhuce/next-ide-helper": "dev-develop"
+        "soyhuce/dev-tools": "^2.4",
+        "soyhuce/next-ide-helper": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
@@ -42,8 +42,7 @@
         "laravel": {
             "dont-discover": [
                 "barryvdh/laravel-debugbar",
-                "nunomaduro/phpinsights",
-                "soyhuce/laravel-ide-helper"
+                "nunomaduro/phpinsights"
             ]
         }
     },
@@ -108,11 +107,5 @@
             "@cs",
             "@test"
         ]
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://storkist.soyhuce.lan/"
-        }
-    ]
+    }
 }

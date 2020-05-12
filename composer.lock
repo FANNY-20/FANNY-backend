@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12d0a1b24e40219362c18c327b182b11",
+    "content-hash": "d89cef6b4344e45b9473ef2b3170ecf3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5396,6 +5396,76 @@
             "time": "2016-01-20T08:20:44+00:00"
         },
         {
+            "name": "intervention/image",
+            "version": "2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.com",
+                    "homepage": "http://olivervogel.com/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.9",
             "source": {
@@ -8083,23 +8153,25 @@
         },
         {
             "name": "soyhuce/dev-tools",
-            "version": "2.3.0",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
-                "url": "git@gitlab.soyhuce.lan:backend-package/dev-tools.git",
-                "reference": "9703f79d31aee48cff9774f07797ded8a6cb3184"
+                "url": "https://github.com/Soyhuce/dev-tools.git",
+                "reference": "d87fa90ca09b675661c2d54d4c9e69d701f4807f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://storkist.soyhuce.lan/storage/dist/soyhuce/dev-tools/soyhuce-dev-tools-9703f79d31aee48cff9774f07797ded8a6cb3184-zip-9f6e57.zip",
-                "reference": "9703f79d31aee48cff9774f07797ded8a6cb3184",
-                "shasum": "9b7a1d9e6c8bc6c4ce9220a7bf1c3d4e93262591"
+                "url": "https://api.github.com/repos/Soyhuce/dev-tools/zipball/d87fa90ca09b675661c2d54d4c9e69d701f4807f",
+                "reference": "d87fa90ca09b675661c2d54d4c9e69d701f4807f",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "^5.6|^6.0|^7.0",
+                "intervention/image": "^2.5",
                 "php": ">=7.1.3"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
                 "laravel/framework": "^6.0|^7.0",
                 "phpunit/phpunit": "~7.0"
             },
@@ -8109,16 +8181,7 @@
                     "Soyhuce\\DevTools\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Soyhuce\\DevTools\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -8129,35 +8192,27 @@
                     "role": "Developer"
                 }
             ],
-            "description": "dev-tools laravel",
-            "homepage": "http://gitlab.soyhuce.lan/backend/dev-tools",
+            "description": "Laravel dev-tools",
             "keywords": [
-                "devTools",
+                "backend",
+                "dev-tools",
                 "soyhuce"
             ],
-            "time": "2020-02-26T14:07:20+01:00"
+            "time": "2020-05-12T07:40:46+00:00"
         },
         {
             "name": "soyhuce/next-ide-helper",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@gitlab.soyhuce.lan:backend-package/next-ide-helper.git",
-                "reference": "01dc3c33080082599a63457a14cc05f594fb6c51"
+                "url": "https://github.com/Soyhuce/next-ide-helper.git",
+                "reference": "7f531b99e5b4167a501a7e0a403affd5471a14cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://storkist.soyhuce.lan/storage/dist/soyhuce/next-ide-helper/soyhuce-next-ide-helper-01dc3c33080082599a63457a14cc05f594fb6c51-zip-103598.zip",
-                "reference": "01dc3c33080082599a63457a14cc05f594fb6c51",
-                "shasum": "304837a9a7e87248618c3335d2b40dada1a68c91"
-            },
-            "archive": {
-                "exclude": [
-                    ".gitignore",
-                    "composer.lock",
-                    "phpunit.xml",
-                    "tests"
-                ]
+                "url": "https://api.github.com/repos/Soyhuce/next-ide-helper/zipball/7f531b99e5b4167a501a7e0a403affd5471a14cb",
+                "reference": "7f531b99e5b4167a501a7e0a403affd5471a14cb",
+                "shasum": ""
             },
             "require": {
                 "composer/composer": "^1.9",
@@ -8168,20 +8223,24 @@
                 "php": "^7.4"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.17",
                 "orchestra/testbench": "^5.0",
                 "phpunit/phpunit": "^9.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Soyhuce\\NextIdeHelper\\NextIdeHelperServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Soyhuce\\IdeHelper\\": "src"
+                    "Soyhuce\\NextIdeHelper\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Test\\": "tests"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -8192,7 +8251,7 @@
                 }
             ],
             "description": "Next generation of Ide Helper",
-            "time": "2020-04-20T15:16:46+02:00"
+            "time": "2020-05-12T06:28:14+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
