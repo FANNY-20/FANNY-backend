@@ -11,11 +11,6 @@ A third project ([the geolocation simulator](https://github.com/FANNY-20/FANNY-g
 is also available as a development tool or for manual testing.
 You can learn more about the FANNY protocol itself [here](https://github.com/FANNY-20/The_FANNY_protocol_V0.1).
 
-## Warning, please read carefully
-
-Some packages in the `composer.json` reference privately hosted packages (those starting with `soyhuce/*`).
-Those packages will be released publicly soon. Thus, the installation will fail until these ones are made available.
-
 ## Prerequisites
 
 - PHP 7.4
@@ -31,10 +26,8 @@ Those packages will be released publicly soon. Thus, the installation will fail 
     - pcntl
     - pgsql
     - pdo_pgsql
-    - zip
-    - gd
-    - opcache
     - redis
+- Composer (https://getcomposer.org/download/)
 
 ## Commands
 
