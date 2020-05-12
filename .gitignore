@@ -21,3 +21,5 @@ public/vendor~
 public/vendor/
 public/images/
 .idea
+
+deploy.php

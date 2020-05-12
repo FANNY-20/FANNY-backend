@@ -93,7 +93,7 @@ class StoreGeolocationTest extends TestCase
 
     /**
      * @test
-     * @covers ::failed
+     * @covers ::store
      */
     public function theBearerTokenMustBeCorrect()
     {

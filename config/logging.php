@@ -34,6 +34,14 @@ return [
     */
 
     'channels' => [
+        'production' => [
+            'driver' => 'stack',
+            'channels' => [
+                'daily',
+                'rollbar',
+            ],
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
