@@ -1,42 +1,54 @@
 <?php
 
-namespace Domain\Geolocation\Models {
-
+namespace Domain\Geolocation\Models
+{
     /**
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery query()
      * @mixin \IdeHelper\Domain\Geolocation\Models\GeolocationQuery
      */
-    class Geolocation {
-        public function initiatedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\InitiatedMeets {}
+    class Geolocation
+    {
+        public function initiatedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\InitiatedMeets
+        {
+        }
 
-        public function receivedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\ReceivedMeets {}
+        public function receivedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\ReceivedMeets
+        {
+        }
     }
 }
 
-namespace Domain\Meet\Models {
-
+namespace Domain\Meet\Models
+{
     /**
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery query()
      * @mixin \IdeHelper\Domain\Meet\Models\MeetQuery
      */
-    class Meet {
-        public function from(): \IdeHelper\Domain\Meet\Models\Meet\From {}
+    class Meet
+    {
+        public function from(): \IdeHelper\Domain\Meet\Models\Meet\From
+        {
+        }
 
-        public function to(): \IdeHelper\Domain\Meet\Models\Meet\To {}
+        public function to(): \IdeHelper\Domain\Meet\Models\Meet\To
+        {
+        }
     }
 }
 
-namespace Domain\Token\Models {
-
+namespace Domain\Token\Models
+{
     /**
      * @method \IdeHelper\Domain\Token\Models\TokenQuery query()
      * @mixin \IdeHelper\Domain\Token\Models\TokenQuery
      */
-    class Token {}
+    class Token
+    {
+    }
 }
 
-namespace IdeHelper\Domain\Geolocation\Models {
-
+namespace IdeHelper\Domain\Geolocation\Models
+{
     /**
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery whereUuid(string $value)
      * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery whereLocation(\Domain\Geolocation\Models\Point|string $value)
@@ -63,24 +75,30 @@ namespace IdeHelper\Domain\Geolocation\Models {
      * @template TModelClass
      * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Geolocation\Models\Geolocation>
      */
-    class GeolocationQuery extends \Illuminate\Database\Eloquent\Builder {}
+    class GeolocationQuery extends \Illuminate\Database\Eloquent\Builder
+    {
+    }
 }
 
-namespace IdeHelper\Domain\Geolocation\Models\Geolocation {
+namespace IdeHelper\Domain\Geolocation\Models\Geolocation
+{
+    /**
+     * @mixin \IdeHelper\Domain\Meet\Models\MeetQuery
+     */
+    class InitiatedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+    }
 
     /**
-     * @mixin \Domain\Meet\Models\Meet
+     * @mixin \IdeHelper\Domain\Meet\Models\MeetQuery
      */
-    class InitiatedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
-
-    /**
-     * @mixin \Domain\Meet\Models\Meet
-     */
-    class ReceivedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany {}
+    class ReceivedMeets extends \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+    }
 }
 
-namespace IdeHelper\Domain\Meet\Models {
-
+namespace IdeHelper\Domain\Meet\Models
+{
     /**
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereId(int|string $value)
      * @method \IdeHelper\Domain\Meet\Models\MeetQuery whereGeolocationFrom(string $value)
@@ -105,24 +123,30 @@ namespace IdeHelper\Domain\Meet\Models {
      * @template TModelClass
      * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Meet\Models\Meet>
      */
-    class MeetQuery extends \Illuminate\Database\Eloquent\Builder {}
+    class MeetQuery extends \Illuminate\Database\Eloquent\Builder
+    {
+    }
 }
 
-namespace IdeHelper\Domain\Meet\Models\Meet {
+namespace IdeHelper\Domain\Meet\Models\Meet
+{
+    /**
+     * @mixin \IdeHelper\Domain\Geolocation\Models\GeolocationQuery
+     */
+    class From extends \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+    }
 
     /**
-     * @mixin \Domain\Geolocation\Models\Geolocation
+     * @mixin \IdeHelper\Domain\Geolocation\Models\GeolocationQuery
      */
-    class From extends \Illuminate\Database\Eloquent\Relations\BelongsTo {}
-
-    /**
-     * @mixin \Domain\Geolocation\Models\Geolocation
-     */
-    class To extends \Illuminate\Database\Eloquent\Relations\BelongsTo {}
+    class To extends \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+    }
 }
 
-namespace IdeHelper\Domain\Token\Models {
-
+namespace IdeHelper\Domain\Token\Models
+{
     /**
      * @method \IdeHelper\Domain\Token\Models\TokenQuery whereId(int|string $value)
      * @method \IdeHelper\Domain\Token\Models\TokenQuery whereValue(string $value)
@@ -147,5 +171,7 @@ namespace IdeHelper\Domain\Token\Models {
      * @template TModelClass
      * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Token\Models\Token>
      */
-    class TokenQuery extends \Illuminate\Database\Eloquent\Builder {}
+    class TokenQuery extends \Illuminate\Database\Eloquent\Builder
+    {
+    }
 }

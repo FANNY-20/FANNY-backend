@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "rollbar/rollbar-laravel": "^6.0",
+        "soyhuce/next-ide-helper": "^0.1.1",
         "soyhuce/service-provider-registrar": "^0.3.0",
         "spatie/data-transfer-object": "^2.0"
     },
@@ -30,8 +31,7 @@
         "nunomaduro/larastan": "^0.5.2",
         "nunomaduro/phpinsights": "^1.14",
         "phpunit/phpunit": "^9.0",
-        "soyhuce/dev-tools": "^2.4",
-        "soyhuce/next-ide-helper": "dev-master"
+        "soyhuce/dev-tools": "^2.4"
     },
     "config": {
         "optimize-autoloader": true,
