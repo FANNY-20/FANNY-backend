@@ -7,7 +7,7 @@ return [
      * case of multitenant application.
      * The class must implement \Soyhuce\IdeHelper\Console\Bootstrapper
      */
-    'bootstrapper' => null,
+    'bootstrapper' => \Support\IdeHelper\CustomColumnsBootstrapper::class,
 
     /**
      * Configure models command
@@ -39,7 +39,7 @@ return [
      * Configure macros command
      */
     'macros' => [
-        /**
+        /*C
          * Which directories to scan macroable classes
          */
         'directories' => ['app', 'vendor'],
@@ -48,5 +48,25 @@ return [
          * Name of the file generated
          */
         'file_name' => '_ide_macros.php',
+    ],
+
+    /**
+     * Configure meta command
+     */
+    'meta' => [
+        /**
+         * Name of the generated file
+         */
+        'file_name' => '.phpstorm.meta.php',
+    ],
+
+    /**
+     * Configure factories command
+     */
+    'factories' => [
+        /**
+         * Which directories to scan factories
+         */
+        'directories' => ['database/factories'],
     ],
 ];
