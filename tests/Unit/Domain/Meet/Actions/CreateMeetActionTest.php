@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domain\Meet\Actions;
 
-use Domain\Geolocation\Models\Geolocation;
+use Database\Factories\Geolocation\GeolocationFactory;
 use Domain\Meet\Actions\CreateMeetAction;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
@@ -20,9 +20,9 @@ class CreateMeetActionTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $geolocation = factory(Geolocation::class)->create();
+        $geolocation = GeolocationFactory::new()->createOne();
 
-        $otherGeolocation = factory(Geolocation::class)->create();
+        $otherGeolocation = GeolocationFactory::new()->createOne();
 
         $this->assertDatabaseMissing('meets', [
             'geolocation_from' => $geolocation->uuid,

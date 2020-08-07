@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\App\Commands\Clean;
 
-use Domain\Meet\Models\Meet;
+use Database\Factories\Meet\MeetFactory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -20,10 +20,8 @@ class CleanMeetsTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $activeMeet = factory(Meet::class)->create();
-        $oldMeet = factory(Meet::class)->create([
-            'updated_at' => now()->subMinutes(18),
-        ]);
+        $activeMeet = MeetFactory::new()->createOne();
+        $oldMeet = MeetFactory::new()->updatedAt(now()->subMinutes(18))->createOne();
 
         Artisan::call('stop-covid:clean-meets');
 

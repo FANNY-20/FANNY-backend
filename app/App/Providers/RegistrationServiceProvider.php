@@ -8,6 +8,7 @@ class RegistrationServiceProvider extends ServiceProvider
 {
     /** @var array<string> */
     public array $local = [
+        FactoryServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,
         \NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class,
         \Soyhuce\DevTools\ServiceProvider::class,
@@ -16,5 +17,6 @@ class RegistrationServiceProvider extends ServiceProvider
 
     /** @var array<string> */
     public array $testing = [
+        FactoryServiceProvider::class,
     ];
 }

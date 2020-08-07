@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\App\Commands\Clean;
 
-use Domain\Token\Models\Token;
+use Database\Factories\Token\TokenFactory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -20,10 +20,8 @@ class CleanTokensTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $activeToken = factory(Token::class)->create();
-        $oldToken = factory(Token::class)->create([
-            'updated_at' => now()->subWeeks(3),
-        ]);
+        $activeToken = TokenFactory::new()->createOne();
+        $oldToken = TokenFactory::new()->updatedAt(now()->subWeeks(3))->createOne();
 
         Artisan::call('stop-covid:clean-tokens');
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\App\Commands\Clean;
 
-use Domain\Geolocation\Models\Geolocation;
+use Database\Factories\Geolocation\GeolocationFactory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -20,10 +20,8 @@ class CleanGeolocationsTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $activeGeolocation = factory(Geolocation::class)->create();
-        $oldGeolocation = factory(Geolocation::class)->create([
-            'updated_at' => now()->subMinutes(11),
-        ]);
+        $activeGeolocation = GeolocationFactory::new()->createOne();
+        $oldGeolocation = GeolocationFactory::new()->updatedAt(now()->subMinutes(11))->createOne();
 
         Artisan::call('stop-covid:clean-geolocations');
 

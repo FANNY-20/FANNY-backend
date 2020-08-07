@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\Domain\Meet\Actions;
 
+use Database\Factories\Geolocation\GeolocationFactory;
+use Database\Factories\Meet\MeetFactory;
 use Domain\Geolocation\Models\Geolocation;
 use Domain\Geolocation\Models\Point;
 use Domain\Meet\Actions\CleanOlderMeetsAction;
@@ -50,7 +52,7 @@ class FetchMeetsForGeolocationTest extends TestCase
      */
     public function nothingIsReturnedWhenGeolocationIsAlone()
     {
-        $geolocation = factory(Geolocation::class)->create();
+        $geolocation = GeolocationFactory::new()->createOne();
 
         $this->cleanOlderMeetsMock->shouldReceive('execute')
             ->withArgs([$geolocation, []])
@@ -67,13 +69,13 @@ class FetchMeetsForGeolocationTest extends TestCase
      */
     public function nothingIsReturnedWhenGeolocationsAreSoFar()
     {
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172515458143, -0.37145912647247)]
-        );
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(49.172515458143, -0.37145912647247))
+            ->createOne();
 
-        factory(Geolocation::class)->create(
-            ['location' => new Point(49.172701337742, -0.37175953388214)]
-        );
+        GeolocationFactory::new()
+            ->location(new Point(49.172701337742, -0.37175953388214))
+            ->createOne();
 
         $this->cleanOlderMeetsMock->shouldReceive('execute')
             ->withArgs([$geolocation, []])
@@ -90,13 +92,13 @@ class FetchMeetsForGeolocationTest extends TestCase
      */
     public function nothingIsReturnedWhenGeolocationsOlderThanATime()
     {
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172627687418, -0.37168979644775)]
-        );
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(49.172627687418, -0.37168979644775))
+            ->createOne();
 
-        $otherGeolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172701337742, -0.37175953388214)]
-        );
+        $otherGeolocation = GeolocationFactory::new()
+            ->location(new Point(49.172701337742, -0.37175953388214))
+            ->createOne();
 
         $this->cleanOlderMeetsMock->shouldReceive('execute')
             ->withArgs([$geolocation, [$otherGeolocation->uuid]])
@@ -124,17 +126,16 @@ class FetchMeetsForGeolocationTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172627687418, -0.37168979644775)]
-        );
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(49.172627687418, -0.37168979644775))
+            ->createOne();
 
-        $meet = factory(Meet::class)->create([
-            'geolocation_from' => $geolocation->uuid,
-            'geolocation_to' => factory(Geolocation::class)->create(
-                ['location' => new Point(49.172701337742, -0.37175953388214)]
-            ),
-            'updated_at' => now()->subSeconds(35),
-        ]);
+        $meet = MeetFactory::new()
+            ->updatedAt(now()->subSeconds(35))
+            ->geolocationFrom($geolocation)
+            ->for(GeolocationFactory::new()
+            ->location(new Point(49.172701337742, -0.37175953388214)), 'to')
+            ->createOne();
 
         $this->updateMeetMock->shouldReceive('execute')
             ->withArgs(static function (Meet $currentMeet) use ($meet): bool {
@@ -159,17 +160,16 @@ class FetchMeetsForGeolocationTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172627687418, -0.37168979644775)]
-        );
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(49.172627687418, -0.37168979644775))
+            ->createOne();
 
-        $meet = factory(Meet::class)->create([
-            'geolocation_from' => $geolocation->uuid,
-            'geolocation_to' => factory(Geolocation::class)->create(
-                ['location' => new Point(49.172701337742, -0.37175953388214)]
-            ),
-            'updated_at' => now()->subSeconds(20),
-        ]);
+        $meet = MeetFactory::new()
+            ->updatedAt(now()->subSeconds(20))
+            ->geolocationFrom($geolocation)
+            ->for(GeolocationFactory::new()
+            ->location(new Point(49.172701337742, -0.37175953388214)), 'to')
+            ->createOne();
 
         $this->cleanOlderMeetsMock->shouldReceive('execute')
             ->withArgs([$geolocation, [$meet->geolocation_to]])

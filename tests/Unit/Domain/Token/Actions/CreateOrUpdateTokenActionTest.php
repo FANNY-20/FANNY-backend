@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domain\Token\Actions;
 
+use Database\Factories\Token\TokenFactory;
 use Domain\Token\Actions\CreateOrUpdateTokenAction;
-use Domain\Token\Models\Token;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
@@ -40,7 +40,7 @@ class CreateOrUpdateTokenActionTest extends TestCase
 
         Carbon::setTestNow($yesterday);
 
-        $token = factory(Token::class)->create();
+        $token = TokenFactory::new()->createOne();
 
         Carbon::setTestNow($today);
 

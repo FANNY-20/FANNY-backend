@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api\TokenController;
 
+use Database\Factories\Token\TokenFactory;
 use Domain\Token\Models\Token;
 use Tests\TestCase;
 
@@ -16,7 +17,7 @@ class IndexTokenTest extends TestCase
      */
     public function tokensIsRetrieved()
     {
-        $tokens = factory(Token::class, 3)->create();
+        $tokens = TokenFactory::times(3)->create();
 
         $this->getJson(
             'api/tokens',
