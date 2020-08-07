@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Domain\Geolocation\Actions;
 
+use Database\Factories\Geolocation\GeolocationFactory;
 use Domain\Geolocation\Actions\SaveGeolocationAction;
 use Domain\Geolocation\DTO\GeolocationDTO;
 use Domain\Geolocation\Models\Geolocation;
@@ -39,10 +40,10 @@ class CreateGeolocationActionTest extends TestCase
      */
     public function geolocationIsUpdated()
     {
-        $geolocation = factory(Geolocation::class)->create([
-            'uuid' => 'azerty123456789',
-            'location' => new Point(10, -10),
-        ]);
+        $geolocation = GeolocationFactory::new()
+            ->uuid('azerty123456789')
+            ->location(new Point(10, -10))
+            ->createOne();
 
         $data = new GeolocationDTO([
             'uuid' => $geolocation->uuid,

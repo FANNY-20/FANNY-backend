@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domain\Meet\Actions;
 
+use Database\Factories\Meet\MeetFactory;
 use Domain\Meet\Actions\UpdateMeetAction;
-use Domain\Meet\Models\Meet;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
@@ -20,7 +20,7 @@ class UpdateMeetActionTest extends TestCase
     {
         Carbon::setTestNow(now());
 
-        $meet = factory(Meet::class)->create();
+        $meet = MeetFactory::new()->createOne();
 
         app(UpdateMeetAction::class)->execute($meet);
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\GeolocationController;
 
-use Domain\Geolocation\Models\Geolocation;
+use Database\Factories\Geolocation\GeolocationFactory;
+use Database\Factories\Meet\MeetFactory;
 use Domain\Geolocation\Models\Point;
-use Domain\Meet\Models\Meet;
 use Tests\TestCase;
 
 /**
@@ -41,17 +41,15 @@ class StoreGeolocationTest extends TestCase
      */
     public function nearGeolocationAreFound()
     {
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(12, -12)]
-        );
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(12, -12))
+            ->createOne();
 
-        $meet = factory(Meet::class)->create([
-            'geolocation_from' => $geolocation->uuid,
-            'geolocation_to' => factory(Geolocation::class)->create(
-                ['location' => new Point(49.172701337742, -0.37175953388214)]
-            ),
-            'updated_at' => now()->subSeconds(35),
-        ]);
+        $meet = MeetFactory::new()
+            ->updatedAt(now()->subSeconds(35))
+            ->geolocationFrom($geolocation)
+            ->for(GeolocationFactory::new()->location(new Point(49.172701337742, -0.37175953388214)), 'to')
+            ->createOne();
 
         $this->postJson(
             'api/geolocations',
@@ -74,7 +72,9 @@ class StoreGeolocationTest extends TestCase
      */
     public function geolocationIsUpdated()
     {
-        factory(Geolocation::class)->create(['uuid' => 'azerty123456']);
+        GeolocationFactory::new()
+            ->uuid('azerty123456')
+            ->createOne();
 
         $this->postJson(
             'api/geolocations',

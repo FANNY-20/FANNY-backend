@@ -3,43 +3,33 @@
 namespace Domain\Geolocation\Models
 {
     /**
-     * @method \IdeHelper\Domain\Geolocation\Models\GeolocationQuery query()
+     * @method static \IdeHelper\Domain\Geolocation\Models\GeolocationQuery query()
      * @mixin \IdeHelper\Domain\Geolocation\Models\GeolocationQuery
+     * @method \IdeHelper\Domain\Geolocation\Models\Geolocation\InitiatedMeets initiatedMeets()
+     * @method \IdeHelper\Domain\Geolocation\Models\Geolocation\ReceivedMeets receivedMeets()
      */
     class Geolocation
     {
-        public function initiatedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\InitiatedMeets
-        {
-        }
-
-        public function receivedMeets(): \IdeHelper\Domain\Geolocation\Models\Geolocation\ReceivedMeets
-        {
-        }
     }
 }
 
 namespace Domain\Meet\Models
 {
     /**
-     * @method \IdeHelper\Domain\Meet\Models\MeetQuery query()
+     * @method static \IdeHelper\Domain\Meet\Models\MeetQuery query()
      * @mixin \IdeHelper\Domain\Meet\Models\MeetQuery
+     * @method \IdeHelper\Domain\Meet\Models\Meet\From from()
+     * @method \IdeHelper\Domain\Meet\Models\Meet\To to()
      */
     class Meet
     {
-        public function from(): \IdeHelper\Domain\Meet\Models\Meet\From
-        {
-        }
-
-        public function to(): \IdeHelper\Domain\Meet\Models\Meet\To
-        {
-        }
     }
 }
 
 namespace Domain\Token\Models
 {
     /**
-     * @method \IdeHelper\Domain\Token\Models\TokenQuery query()
+     * @method static \IdeHelper\Domain\Token\Models\TokenQuery query()
      * @mixin \IdeHelper\Domain\Token\Models\TokenQuery
      */
     class Token
@@ -72,8 +62,8 @@ namespace IdeHelper\Domain\Geolocation\Models
      * @method \Illuminate\Database\Eloquent\Collection getModels(array|string $columns = ['*'])
      * @method \Domain\Geolocation\Models\Geolocation newModelInstance(array $attributes = [])
      * @method \Domain\Geolocation\Models\Geolocation updateOrCreate(array $attributes, array $values = [])
-     * @template TModelClass
-     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Geolocation\Models\Geolocation>
+     * @template TModelClass of \Domain\Geolocation\Models\Geolocation
+     * @extends \Illuminate\Database\Eloquent\Builder<TModelClass>
      */
     class GeolocationQuery extends \Illuminate\Database\Eloquent\Builder
     {
@@ -120,8 +110,8 @@ namespace IdeHelper\Domain\Meet\Models
      * @method \Domain\Meet\Collections\MeetCollection getModels(array|string $columns = ['*'])
      * @method \Domain\Meet\Models\Meet newModelInstance(array $attributes = [])
      * @method \Domain\Meet\Models\Meet updateOrCreate(array $attributes, array $values = [])
-     * @template TModelClass
-     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Meet\Models\Meet>
+     * @template TModelClass of \Domain\Meet\Models\Meet
+     * @extends \Illuminate\Database\Eloquent\Builder<TModelClass>
      */
     class MeetQuery extends \Illuminate\Database\Eloquent\Builder
     {
@@ -168,8 +158,8 @@ namespace IdeHelper\Domain\Token\Models
      * @method \Illuminate\Database\Eloquent\Collection getModels(array|string $columns = ['*'])
      * @method \Domain\Token\Models\Token newModelInstance(array $attributes = [])
      * @method \Domain\Token\Models\Token updateOrCreate(array $attributes, array $values = [])
-     * @template TModelClass
-     * @extends \Illuminate\Database\Eloquent\Builder<\Domain\Token\Models\Token>
+     * @template TModelClass of \Domain\Token\Models\Token
+     * @extends \Illuminate\Database\Eloquent\Builder<TModelClass>
      */
     class TokenQuery extends \Illuminate\Database\Eloquent\Builder
     {

@@ -5,9 +5,19 @@ return [
      * The bootstrapper use to boot your application before running analyses.
      * You may want, for exemple, to setup a database for your tenant model in
      * case of multitenant application.
-     * The class must implement \Soyhuce\IdeHelper\Console\Bootstrapper
+     * The class must implement \Soyhuce\NextIdeHelper\Console\Bootstrapper
      */
     'bootstrapper' => \Support\IdeHelper\CustomColumnsBootstrapper::class,
+
+    /**
+     * Configure aliases command
+     */
+    'aliases' => [
+        /**
+         * Name of the generated file
+         */
+        'file_name' => '_ide_aliases.php',
+    ],
 
     /**
      * Configure models command
@@ -19,33 +29,37 @@ return [
         'directories' => ['app'],
 
         /**
-         * Name of the file generated in addition to the php docblocks
+         * Name of the generated file in addition to the php docblocks
          */
         'file_name' => '_ide_models.php',
 
         /**
          * List of the extensions you want to use to tweak the way models are resolved
-         * The extensions must implement \Soyhuce\IdeHelper\Domain\Actions\ModelResolver
+         * The extensions must implement \Soyhuce\NextIdeHelper\Domain\Actions\ModelResolver
          *
          * Some extensions are already available :
-         * - Soyhuce\IdeHelper\Extensions\SpatieEnumResolver
-         * - Soyhuce\IdeHelper\Extensions\VirtualAttributeResolver
+         * - Soyhuce\NextIdeHelper\Domain\Models\Extensions\SpatieEnumResolver
+         * - Soyhuce\NextIdeHelper\Domain\Models\Extensions\VirtualAttributeResolver
          */
-        'extensions' => [
-        ],
+        'extensions' => [],
+
+        /**
+         * Use Larastan friendly docblock when possible
+         */
+        'larastan_friendly' => true,
     ],
 
     /**
      * Configure macros command
      */
     'macros' => [
-        /*C
+        /**
          * Which directories to scan macroable classes
          */
         'directories' => ['app', 'vendor'],
 
         /**
-         * Name of the file generated
+         * Name of the generated file
          */
         'file_name' => '_ide_macros.php',
     ],

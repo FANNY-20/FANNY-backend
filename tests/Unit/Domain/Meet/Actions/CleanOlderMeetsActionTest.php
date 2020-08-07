@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Domain\Meet\Actions;
 
-use Domain\Geolocation\Models\Geolocation;
+use Database\Factories\Geolocation\GeolocationFactory;
+use Database\Factories\Meet\MeetFactory;
 use Domain\Geolocation\Models\Point;
 use Domain\Meet\Actions\CleanOlderMeetsAction;
-use Domain\Meet\Models\Meet;
 use Tests\TestCase;
 
 /**
@@ -19,19 +19,17 @@ class CleanOlderMeetsActionTest extends TestCase
      */
     public function olderMeetIsDeleted()
     {
-        $geolocation = factory(Geolocation::class)->create(
-            ['location' => new Point(49.172627687418, -0.37168979644775)]
-        );
-        $meet = factory(Meet::class)->create([
-            'geolocation_from' => $geolocation->uuid,
-        ]);
+        $geolocation = GeolocationFactory::new()
+            ->location(new Point(49.172627687418, -0.37168979644775))
+            ->createOne();
 
-        $otherMeet = factory(Meet::class)->create([
-            'geolocation_from' => $geolocation->uuid,
-            'geolocation_to' => factory(Geolocation::class)->create(
-                ['location' => new Point(49.172701337742, -0.37175953388214)]
-            ),
-        ]);
+        $meet = MeetFactory::new()->geolocationFrom($geolocation)->createOne();
+
+        $otherMeet = MeetFactory::new()
+            ->geolocationFrom($geolocation)
+            ->for(GeolocationFactory::new()
+            ->location(new Point(49.172701337742, -0.37175953388214)), 'to')
+            ->createOne();
 
         app(CleanOlderMeetsAction::class)->execute($geolocation, [$otherMeet->geolocation_to]);
 

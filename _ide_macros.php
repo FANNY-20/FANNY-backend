@@ -1,6 +1,7 @@
 <?php
 
-namespace Illuminate\Http {
+namespace Illuminate\Http
+{
     class Request
     {
         public function hasValidSignature($absolute = true)
@@ -8,12 +9,12 @@ namespace Illuminate\Http {
             return URL::hasValidSignature($this, $absolute);
         }
 
-        public function validate(array $rules, ...$params)
+        public function validate(array $rules, ...$params = null)
         {
             return validator()->validate($this->all(), $rules, ...$params);
         }
 
-        public function validateWithBag(string $errorBag, array $rules, ...$params)
+        public function validateWithBag(string $errorBag, array $rules, ...$params = null)
         {
             try {
                 return $this->validate($rules, ...$params);
@@ -26,15 +27,23 @@ namespace Illuminate\Http {
     }
 }
 
-namespace Illuminate\Routing {
+namespace Illuminate\Routing
+{
     class Router
     {
-        public function auth($options = [])
+        public function auth($options = [
+        ])
         {
-            // Authentication Routes...
-            $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-            $this->post('login', 'Auth\LoginController@login');
-            $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+            // Login Routes...
+            if ($options['login'] ?? true) {
+                $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+                $this->post('login', 'Auth\LoginController@login');
+            }
+
+            // Logout Routes...
+            if ($options['logout'] ?? true) {
+                $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+            }
 
             // Registration Routes...
             if ($options['register'] ?? true) {
