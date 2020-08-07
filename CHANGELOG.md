@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## `0.1.2` (07-08-2020)
+
+Upgrade dependencies
+Use laravel 8 factories
+
 ## `0.1.1` (05-12-2020)
 
 Update README:
