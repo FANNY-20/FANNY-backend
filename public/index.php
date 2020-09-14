@@ -7,7 +7,25 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
+
 define('LARAVEL_START', microtime(true));
+
+/*
+|--------------------------------------------------------------------------
+| Check If Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is maintenance / demo mode via the "down" command we
+| will require this file so that any prerendered template can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
+
+if (file_exists(__DIR__ . '/../storage/framework/maintenance.php')) {
+    require __DIR__ . '/../storage/framework/maintenance.php';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +39,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
-
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
-|
-*/
-
-$app = require_once __DIR__.'/../bootstrap/app.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -49,12 +53,12 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
+$kernel = $app->make(Kernel::class);
 
-$response->send();
+$response = tap($kernel->handle(
+    $request = Request::capture()
+))->send();
 
 $kernel->terminate($request, $response);

@@ -14,6 +14,9 @@ use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
+use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 
 return [
     /*
@@ -33,6 +36,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | IDE
+    |--------------------------------------------------------------------------
+    |
+    | This options allow to add hyperlinks in your terminal to quickly open
+    | files in your favorite IDE while browsing your PhpInsights report.
+    |
+    | Supported: "textmate", "macvim", "emacs", "sublime", "phpstorm",
+    | "atom", "vscode".
+    |
+    | If you have another IDE that is not in this list but which provide an
+    | url-handler, you could fill this config with a pattern like this:
+    |
+    | myide://open?url=file://%f&line=%l
+    |
+    */
+
+    'ide' => null,
+
+    /*
+    |--------------------------------------------------------------------------
     | Configuration
     |--------------------------------------------------------------------------
     |
@@ -43,8 +66,8 @@ return [
     */
 
     'exclude' => [
-        '_ide_macros.php',
-        '_ide_models.php',
+        'ide_helper/',
+        'phpunit/',
     ],
 
     'add' => [
@@ -72,5 +95,49 @@ return [
             'absoluteLineLimit' => 160,
             'ignoreComments' => true,
         ],
+        ParameterTypeHintSniff::class => [
+            'traversableTypeHints' => [
+                \Illuminate\Support\Collection::class,
+                \Illuminate\Support\LazyCollection::class,
+                \Illuminate\Database\Eloquent\Builder::class,
+                \Illuminate\Database\Eloquent\Collection::class,
+            ],
+        ],
+        PropertyTypeHintSniff::class => [
+            'enableNativeTypeHint' => false,
+            'traversableTypeHints' => [
+                \Illuminate\Support\Collection::class,
+                \Illuminate\Support\LazyCollection::class,
+                \Illuminate\Database\Eloquent\Builder::class,
+                \Illuminate\Database\Eloquent\Collection::class,
+            ],
+        ],
+        ReturnTypeHintSniff::class => [
+            'traversableTypeHints' => [
+                \Illuminate\Support\Collection::class,
+                \Illuminate\Support\LazyCollection::class,
+                \Illuminate\Database\Eloquent\Builder::class,
+                \Illuminate\Database\Eloquent\Collection::class,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Requirements
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define a level you want to reach per `Insights` category.
+    | When a score is lower than the minimum level defined, then an error
+    | code will be returned. This is optional and individually defined.
+    |
+    */
+
+    'requirements' => [
+        //        'min-quality' => 0,
+        //        'min-complexity' => 0,
+        //        'min-architecture' => 0,
+        //        'min-style' => 0,
+        //        'disable-security-check' => false,
     ],
 ];

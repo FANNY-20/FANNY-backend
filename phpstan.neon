@@ -3,13 +3,13 @@ includes:
 
 parameters:
 
-  bootstrap: ./bootstrap/phpstan.php
-
   paths:
     - app
 
-  level: 8
+  # Level 8 is max
+  level: 7
 
   ignoreErrors:
 
-  checkMissingIterableValueType: false
+  checkMissingIterableValueType: true
+  checkGenericClassInNonGenericObjectType: false

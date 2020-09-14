@@ -16,7 +16,7 @@ return [
         /**
          * Name of the generated file
          */
-        'file_name' => '_ide_aliases.php',
+        'file_name' => 'ide_helper/aliases.php',
     ],
 
     /**
@@ -31,7 +31,7 @@ return [
         /**
          * Name of the generated file in addition to the php docblocks
          */
-        'file_name' => '_ide_models.php',
+        'file_name' => 'ide_helper/models.php',
 
         /**
          * List of the extensions you want to use to tweak the way models are resolved
@@ -61,7 +61,7 @@ return [
         /**
          * Name of the generated file
          */
-        'file_name' => '_ide_macros.php',
+        'file_name' => 'ide_helper/macros.php',
     ],
 
     /**
@@ -71,7 +71,7 @@ return [
         /**
          * Name of the generated file
          */
-        'file_name' => '.phpstorm.meta.php',
+        'file_name' => 'ide_helper/.phpstorm.meta.php',
     ],
 
     /**

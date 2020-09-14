@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## `0.1.4` (2020-09-14)
+
+Laravel 8 Support
+
 ## `0.1.3` (2020-09-12)
 
 Upgrade dependencies
