@@ -9,12 +9,12 @@ namespace Illuminate\Http
             return URL::hasValidSignature($this, $absolute);
         }
 
-        public function validate(array $rules, ...$params = null)
+        public function validate(array $rules, ... $params)
         {
             return validator()->validate($this->all(), $rules, ...$params);
         }
 
-        public function validateWithBag(string $errorBag, array $rules, ...$params = null)
+        public function validateWithBag(string $errorBag, array $rules, ... $params)
         {
             try {
                 return $this->validate($rules, ...$params);
@@ -31,41 +31,45 @@ namespace Illuminate\Routing
 {
     class Router
     {
-        public function auth($options = [
-        ])
+        public function auth($options = array (
+))
         {
-            // Login Routes...
-            if ($options['login'] ?? true) {
-                $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-                $this->post('login', 'Auth\LoginController@login');
-            }
+            $namespace = class_exists($this->prependGroupNamespace('Auth\LoginController')) ? null : 'App\Http\Controllers';
 
-            // Logout Routes...
-            if ($options['logout'] ?? true) {
-                $this->post('logout', 'Auth\LoginController@logout')->name('logout');
-            }
+            $this->group(['namespace' => $namespace], function() use($options) {
+                // Login Routes...
+                if ($options['login'] ?? true) {
+                    $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+                    $this->post('login', 'Auth\LoginController@login');
+                }
 
-            // Registration Routes...
-            if ($options['register'] ?? true) {
-                $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-                $this->post('register', 'Auth\RegisterController@register');
-            }
+                // Logout Routes...
+                if ($options['logout'] ?? true) {
+                    $this->post('logout', 'Auth\LoginController@logout')->name('logout');
+                }
 
-            // Password Reset Routes...
-            if ($options['reset'] ?? true) {
-                $this->resetPassword();
-            }
+                // Registration Routes...
+                if ($options['register'] ?? true) {
+                    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+                    $this->post('register', 'Auth\RegisterController@register');
+                }
 
-            // Password Confirmation Routes...
-            if ($options['confirm'] ??
-                class_exists($this->prependGroupNamespace('Auth\ConfirmPasswordController'))) {
-                $this->confirmPassword();
-            }
+                // Password Reset Routes...
+                if ($options['reset'] ?? true) {
+                    $this->resetPassword();
+                }
 
-            // Email Verification Routes...
-            if ($options['verify'] ?? false) {
-                $this->emailVerification();
-            }
+                // Password Confirmation Routes...
+                if ($options['confirm'] ??
+                    class_exists($this->prependGroupNamespace('Auth\ConfirmPasswordController'))) {
+                    $this->confirmPassword();
+                }
+
+                // Email Verification Routes...
+                if ($options['verify'] ?? false) {
+                    $this->emailVerification();
+                }
+            });
         }
 
         public function confirmPassword()

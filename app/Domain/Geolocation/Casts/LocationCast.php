@@ -36,7 +36,7 @@ class LocationCast implements CastsAttributes
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      * @param \Illuminate\Database\Eloquent\Model $model
-     * @param string $value
+     * @param \Domain\Geolocation\Models\Point $value
      * @param array<string, mixed> $attributes
      */
     public function set($model, string $key, $value, array $attributes): Expression

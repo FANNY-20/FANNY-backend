@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class AuthenticateApp
 {
+    /**
+     * @return mixed
+     */
     public function handle(Request $request, Closure $next)
     {
         if ($request->bearerToken() !== config('stop-covid.token')) {
