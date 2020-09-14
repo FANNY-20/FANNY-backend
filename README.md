@@ -1,6 +1,6 @@
 # FANNY backend
 
-![Release](https://img.shields.io/badge/Release-0.1.3-blue.svg)
+![Release](https://img.shields.io/badge/Release-0.1.4-blue.svg)
 
 ## Context
 
