@@ -2,7 +2,7 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->in(['app', 'config', 'database', 'routes', 'tests'])
-    ->append(['_ide_macros.php','_ide_helper.php']);
+    ->append(['ide_helper']);
 
 return PhpCsFixer\Config::create()
     ->setRules([

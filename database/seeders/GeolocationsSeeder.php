@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Domain\Geolocation\Models\Geolocation;
 use Illuminate\Database\Seeder;
 
